@@ -62,6 +62,13 @@ export default class {
     });
   }
 
+  async getCustomer(id) {
+    const url = `${ROOT_URL}api/v1/customers/${id}`;
+    return fetch(url, {
+      headers: this.getPrivateHeaders(),
+    });
+  }
+
   async createCustomer(payload) {
     const url = `${ROOT_URL}api/v1/customers`;
     return fetch(url, {
@@ -86,10 +93,15 @@ export default class {
     };
     return fetch(url, {
       method: "PUT",
-      headers: this.getPublicHeaders,
+      headers: this.getPrivateHeaders(),
       body: JSON.stringify(payload),
     });
   }
+
+  /* 
+  PUT: update;
+  PATCH: partial update
+  */
 
   setToken(token) {
     localStorage.setItem("BUSINESS_TOKEN", token);

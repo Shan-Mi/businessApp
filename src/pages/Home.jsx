@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import CreateNewCustomerForm from "../components/CreateNewCustomer";
 import UserKit from "../data/UserKit";
 import { UserContext } from "../context/GlobalContext";
+import { Link } from "react-router-dom";
 
 const userKit = new UserKit();
 const Home = () => {
@@ -33,16 +34,13 @@ const Home = () => {
   */
   const handleDelete = (id) => {
     console.log(id);
-    userKit
-      .deleteCustomer(id)
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+    userKit.deleteCustomer(id);
   };
 
   const renderCustomers = (customers) =>
     customers.map(({ name, organisationNr, reference, id }, index) => (
       <div key={index}>
-        <p>
+        <Link to={`/home/${id}`}>
           <span>
             <strong>Name:</strong> {name}
           </span>
@@ -52,7 +50,7 @@ const Home = () => {
           <span>
             <strong>Reference:</strong> {reference}
           </span>
-        </p>
+        </Link>
 
         <button
           onClick={() => {
