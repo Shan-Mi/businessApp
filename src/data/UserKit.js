@@ -49,42 +49,29 @@ export default class {
 
   async getCustomerList() {
     const url = `${ROOT_URL}api/v1/customers`;
+    console.log(url);
+    console.log(this.getPrivateHeaders());
     return fetch(url, {
-      headers: this.getPublicHeaders(),
+      headers: this.getPrivateHeaders(),
     });
   }
 
-  async createCustomerList(
-    name,
-    organisationNr,
-    vatNr,
-    reference,
-    paymentTerm,
-    website,
-    email,
-    phoneNumber
-  ) {
+  async createCustomer(payload) {
     const url = `${ROOT_URL}api/v1/customers`;
-    const payload = {
-      name,
-      organisationNr,
-      vatNr,
-      reference,
-      paymentTerm,
-      website,
-      email,
-      phoneNumber,
-    };
+
     return fetch(url, {
       method: "POST",
-      headers: this.getPublicHeaders(),
+      headers: this.getPrivateHeaders(),
       body: JSON.stringify(payload),
     });
   }
 
   async deleteCustomer(id) {
     const url = `${ROOT_URL}api/v1/customers/${id}/ `;
-    return fetch(url, { method: "DELETE", headers: this.getPublicHeaders() });
+    return fetch(url, {
+      method: "DELETE",
+      headers: this.getPrivateHeaders(),
+    });
   }
 
   async editCustomerInfo(id, ...args) {
@@ -104,7 +91,7 @@ export default class {
   }
 
   getToken() {
-    localStorage.getItem("BUSINESS_TOKEN");
+    return localStorage.getItem("BUSINESS_TOKEN");
   }
 
   getPublicHeaders() {
@@ -120,3 +107,15 @@ export default class {
     };
   }
 }
+/* 
+createCustomerList(
+    name,
+    organisationNr,
+    vatNr,
+    reference,
+    paymentTerm,
+    website,
+    email,
+    phoneNumber
+  ) 
+   */

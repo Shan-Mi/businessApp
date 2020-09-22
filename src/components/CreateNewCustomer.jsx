@@ -12,18 +12,18 @@ export const TableContainer = styled.table`
 const userKit = new UserKit();
 
 const CreateNewCustomerForm = () => {
-  const [name, setName] = useState(null);
-  const [organisationNr, setOrganisationNr] = useState(null);
-  const [vatNr, setVatNr] = useState(null);
-  const [reference, setReference] = useState(null);
-  const [paymentTerm, setPaymentTerm] = useState(null);
-  const [website, setWebsite] = useState(null);
-  const [email, setEmail] = useState(null);
-  const [phoneNumber, setPhoneNumber] = useState(null);
+  const [name, setName] = useState('');
+  const [organisationNr, setOrganisationNr] = useState('');
+  const [vatNr, setVatNr] = useState('');
+  const [reference, setReference] = useState('');
+  const [paymentTerm, setPaymentTerm] = useState('');
+  const [website, setWebsite] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const handleCreateCustomer = () => {
     userKit
-      .createCustomerList(
+      .createCustomer(
         name,
         organisationNr,
         vatNr,
