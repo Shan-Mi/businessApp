@@ -27,6 +27,78 @@ export default class {
     });
   }
 
+  async activateUser(uid, token) {
+    const url = `${ROOT_URL}auth/users/activate/`;
+    const payload = { uid, token };
+    return fetch(url, {
+      method: "POST",
+      headers: this.getPublicHeaders(),
+      body: JSON.stringify(payload),
+    });
+  }
+
+  async login(email, password) {
+    const url = `${ROOT_URL}api-token-auth/`;
+    const payload = { email, password };
+    return fetch(url, {
+      method: "POST",
+      headers: this.getPublicHeaders(),
+      body: JSON.stringify(payload),
+    });
+  }
+
+  async getCustomerList() {
+    const url = `${ROOT_URL}api/v1/customers`;
+    return fetch(url, {
+      headers: this.getPrivateHeaders(),
+    });
+  }
+
+  async createCustomerList(
+    name,
+    organisationNr,
+    vatNr,
+    reference,
+    paymentTerm,
+    website,
+    email,
+    phoneNumber
+  ) {
+    const url = `${ROOT_URL}api/v1/customers`;
+    const payload = {
+      name,
+      organisationNr,
+      vatNr,
+      reference,
+      paymentTerm,
+      website,
+      email,
+      phoneNumber,
+    };
+    return fetch(url, {
+      method: "POST",
+      headers: this.getPublicHeaders(),
+      body: JSON.stringify(payload),
+    });
+  }
+
+  async deleteCustomer(id) {
+    const url = `${ROOT_URL}api/v1/customers/${id}/ `;
+    return fetch(url, { method: "DELETE", headers: this.getPublicHeaders() });
+  }
+
+  async editCustomerInfo(id, ...args) {
+    const url = `${ROOT_URL}api/v1/customers/${id}/ `;
+    const payload = {
+      ...args,
+    };
+    return fetch(url, {
+      method: "PUT",
+      headers: this.getPublicHeaders,
+      body: JSON.stringify(payload),
+    });
+  }
+
   setToken(token) {
     localStorage.setItem("BUSINESS_TOKEN", token);
   }

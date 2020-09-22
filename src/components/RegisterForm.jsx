@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import UserKit from "../data/UserKit";
 import styled from "styled-components";
+import { UserContext } from "../context/GlobalContext";
 
 const FlexContainer = styled.div`
   display: flex;
@@ -32,15 +33,21 @@ const InputContainer = styled.div`
   }
 `;
 
+const WarningContainer = styled.p`
+  color: red;
+`;
+
 const userKit = new UserKit();
 
 const RegisterForm = () => {
+  const { user, setUser } = useContext(UserContext);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [organisationName, setOrganisationName] = useState("");
   const [organisationKind, setOrganisationKind] = useState("");
+  const [errors, setErrors] = useState("");
 
   const inputItemsArray = [
     ["First Name", firstName, setFirstName],
@@ -65,19 +72,53 @@ const RegisterForm = () => {
     );
   }
 
+  function isEmailExisted({ email }) {
+    if (email) {
+      setErrors("This email already exists");
+      throw new Error("This email already exists");
+    }
+  }
+
+  function isPasswordStrong({ password }) {
+    if (password) {
+      setErrors("You need a stronger password");
+      throw new Error("You need a stronger password");
+    }
+  }
+
   function handleRegister() {
-    userKit.register(
+    userKit
+      .register(
+        firstName,
+        lastName,
+        email,
+        password,
+        organisationName,
+        organisationKind
+      )
+      .then((res) => res.json())
+      .then((data) => {
+        isEmailExisted(data);
+        isPasswordStrong(data);
+      })
+      .catch((e) => console.error(e));
+
+    setUser({
       firstName,
       lastName,
       email,
       password,
       organisationName,
-      organisationKind
-    );
+      organisationKind,
+    });
+    console.log(user);
   }
 
   return (
     <FlexContainer>
+      <h2>Register</h2>
+      <p>Enter Details to register:</p>
+      {errors && <WarningContainer>{errors}</WarningContainer>}
       <FormContainer>
         {inputItemsArray.map(([placeholder, value, setValue], index) =>
           renderInput(index, placeholder, value, setValue)
