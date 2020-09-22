@@ -28,9 +28,16 @@ const Home = () => {
   /* 
   Object { id: 115, email: "ayumi919@163.com", firstName: "jane", lastName: "doe", role: 1 }
   */
+  const handleDelete = (id) => {
+    console.log(id);
+    userKit
+      .deleteCustomer(id)
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
 
   const renderCustomers = (customers) =>
-    customers.map(({ name, organisationNr, reference }, index) => (
+    customers.map(({ name, organisationNr, reference, id }, index) => (
       <div key={index}>
         <p>
           <span>
@@ -43,6 +50,14 @@ const Home = () => {
             <strong>Reference:</strong> {reference}
           </span>
         </p>
+
+        <button
+          onClick={() => {
+            handleDelete(id);
+          }}>
+          Delete
+        </button>
+        <button>Update</button>
       </div>
     ));
 
