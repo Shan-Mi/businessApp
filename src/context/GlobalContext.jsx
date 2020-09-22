@@ -2,8 +2,8 @@ import React, { createContext, useState } from "react";
 
 export const UserContext = createContext({});
 const GlobalContext = ({ children }) => {
-  const [customers, setCustomers] = useState(null);
-  const [user, setUser] = useState(null);
+  const [customers, setCustomers] = useState([]);
+  const [user, setUser] = useState('');
   return React.createElement(
     UserContext.Provider,
     {

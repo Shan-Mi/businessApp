@@ -37,6 +37,14 @@ export default class {
     });
   }
 
+  async getLoginUser() {
+    const url = `${ROOT_URL}api/v1/me`;
+    return fetch(url, {
+      method: "GET",
+      headers: this.getPrivateHeaders(),
+    });
+  }
+
   async login(email, password) {
     const url = `${ROOT_URL}api-token-auth/`;
     const payload = { email, password };
@@ -49,8 +57,6 @@ export default class {
 
   async getCustomerList() {
     const url = `${ROOT_URL}api/v1/customers`;
-    console.log(url);
-    console.log(this.getPrivateHeaders());
     return fetch(url, {
       headers: this.getPrivateHeaders(),
     });
@@ -58,7 +64,6 @@ export default class {
 
   async createCustomer(payload) {
     const url = `${ROOT_URL}api/v1/customers`;
-
     return fetch(url, {
       method: "POST",
       headers: this.getPrivateHeaders(),
