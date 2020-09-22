@@ -50,7 +50,7 @@ export default class {
   async getCustomerList() {
     const url = `${ROOT_URL}api/v1/customers`;
     return fetch(url, {
-      headers: this.getPrivateHeaders(),
+      headers: this.getPublicHeaders(),
     });
   }
 

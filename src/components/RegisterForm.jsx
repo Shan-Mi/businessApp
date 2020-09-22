@@ -98,19 +98,24 @@ const RegisterForm = () => {
       )
       .then((res) => res.json())
       .then((data) => {
+        // TODO: need to be refactored
+        setUser({
+          firstName,
+          lastName,
+          email,
+          password,
+          organisationName,
+          organisationKind,
+        });
+        if (user) {
+          localStorage.setItem("USER", JSON.stringify(user));
+        }
+        // TODO ends.
         isEmailExisted(data);
         isPasswordStrong(data);
       })
       .catch((e) => console.error(e));
 
-    setUser({
-      firstName,
-      lastName,
-      email,
-      password,
-      organisationName,
-      organisationKind,
-    });
     console.log(user);
   }
 
