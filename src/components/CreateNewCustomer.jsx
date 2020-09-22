@@ -1,7 +1,6 @@
 // TODO hook-form seems nice, will try this one out later.
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { UserContext } from "../context/GlobalContext";
 import UserKit from "../data/UserKit";
 
 export const TableContainer = styled.table`
@@ -16,7 +15,7 @@ function isVarNrLegit(varNr) {
 }
 
 function isEmailLegit(email) {
-  const regex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/g;
+  const regex = /^([a-zA-Z0-9_]+)@([a-zA-Z0-9_]+)\.([a-zA-Z]{2,5})$/g;
   return regex.test(email);
 }
 
@@ -35,13 +34,13 @@ const CreateNewCustomerForm = () => {
   const [errors, setErrors] = useState({});
 
   const handleCreateCustomer = () => {
-    console.log(email)
+    console.log(email);
     if (!isVarNrLegit(vatNr)) {
       setErrors({
         vatNrError:
           " Invalid VatNr, you should follow this pattern: SE1234567890",
       });
-      console.log(errors)
+      console.log(errors);
     } else if (!isEmailLegit(email)) {
       setErrors({
         emailError: "Email format is invalid.",
@@ -94,7 +93,7 @@ const CreateNewCustomerForm = () => {
   return (
     <div>
       <button onClick={handleCreateCustomer}>Add one new customer</button>
-      {errors.varNrError && <p>{errors?.vatNrError}</p> }
+      {errors.varNrError && <p>{errors?.vatNrError}</p>}
       <TableContainer>
         <thead>
           {inputItemsArray.map(([placeholder, value, setValue], index) =>

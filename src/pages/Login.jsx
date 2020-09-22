@@ -32,7 +32,7 @@ const Login = () => {
       });
   };
 
-  // console.log(uid, token);
+  console.log(uid, token);
 
   return (
     <div>
@@ -51,6 +51,7 @@ const Login = () => {
       <input
         placeholder="Password"
         type="password"
+        value="js-fend-19"
         onChange={(e) => {
           setLoginPassword(e.target.value);
           setErrors(null);

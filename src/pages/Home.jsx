@@ -8,14 +8,6 @@ const Home = () => {
   const { user, setUser, customers, setCustomers } = useContext(UserContext);
 
   const [customerNr, setCustomerNr] = useState("");
-  userKit
-    .getCustomerList()
-    .then((res) => res.json())
-    .then((data) => {
-      setCustomers(data.results);
-      // console.log(data)
-      setCustomerNr(data.count);
-    });
 
   useEffect(() => {
     userKit
@@ -24,7 +16,18 @@ const Home = () => {
       .then(({ email, firstName, lastName }) =>
         setUser({ email, firstName, lastName })
       );
-  }, []);
+  }, [setUser]);
+
+  useEffect(() => {
+    userKit
+      .getCustomerList()
+      .then((res) => res.json())
+      .then((data) => {
+        setCustomers(data.results);
+        // console.log(data)
+        setCustomerNr(data.count);
+      });
+  }, [customers]);
   /* 
   Object { id: 115, email: "ayumi919@163.com", firstName: "jane", lastName: "doe", role: 1 }
   */
