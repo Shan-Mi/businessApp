@@ -74,7 +74,7 @@ const RegisterForm = () => {
 
   function isEmailExisted({ email }) {
     if (email) {
-      setErrors("This email already exists");
+      setErrors("This email already exists or check your mail-box");
       throw new Error("This email already exists");
     }
   }
