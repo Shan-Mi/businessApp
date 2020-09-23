@@ -1,5 +1,5 @@
 // TODO hook-form seems nice, will try this one out later.
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import UserKit from "../data/UserKit";
 import { useForm } from "react-hook-form";
@@ -10,23 +10,6 @@ import FormInput from "./FormInput";
 export const TableContainer = styled.table`
   margin: auto;
 `;
-
-// const { customers, setCustomers } = useContext(UserContext);
-
-// function isVarNrLegit(varNr) {
-//   const regex = /^SE\d{10}$/gi;
-//   return regex.test(varNr);
-// }
-
-// function isEmailLegit(email) {
-//   const regex = /^([a-zA-Z0-9_]+)@([a-zA-Z0-9_]+)\.([a-zA-Z]{2,5})$/g;
-//   return regex.test(email);
-// }
-
-// function isPaymentFormatCorrect(payment) {
-//   const regex = /^(\d|\d{1,9}|1\d{1,9}|20\d{8}|213\d{7}|2146\d{6}|21473\d{5}|214747\d{4}|2147482\d{3}|21474835\d{2}|214748364[0-7])$/g;
-//   return regex.test(payment);
-// }
 
 const userKit = new UserKit();
 
