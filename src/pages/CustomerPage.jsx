@@ -15,36 +15,60 @@ const CustomerPage = (props) => {
   const [vatNr, setVatNr] = useState("");
   const [website, setWebsite] = useState("");
   const history = useHistory();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   useEffect(() => {
     userKit
       .getCustomer(id)
       .then((res) => res.json())
       .then(({ results: customers }) => {
-        const currentCustomer = customers.filter(
+        const [currentCustomer] = customers.filter(
           (customer) => customer.id === +id
         );
-        setEmail(currentCustomer[0].email);
-        setName(currentCustomer[0].name);
-        setOrganisationNr(currentCustomer[0].organisationNr);
-        setPaymentTerm(currentCustomer[0].paymentTerm);
-        setPhoneNumber(currentCustomer[0].phoneNumber);
-        setReference(currentCustomer[0].reference);
-        setVatNr(currentCustomer[0].vatNr);
-        setWebsite(currentCustomer[0].website);
+        setEmail(currentCustomer.email);
+        setName(currentCustomer.name);
+        setOrganisationNr(currentCustomer.organisationNr);
+        setPaymentTerm(currentCustomer.paymentTerm);
+        setPhoneNumber(currentCustomer.phoneNumber);
+        setReference(currentCustomer.reference);
+        setVatNr(currentCustomer.vatNr);
+        setWebsite(currentCustomer.website);
+        setIsLoading(false);
         console.log(currentCustomer);
       });
   }, []);
 
   const handleDelete = (id) => {
-    // console.log(id);
     userKit.deleteCustomer(id);
     history.push("/home");
   };
 
-  return (
+  const handleUpdate = (id, ...args) => {
+    setIsUpdating(true);
+    drawUpdateCustomerInfoArea();
+  };
+
+  const saveUpdate = () => {
+    setIsUpdating(false);
+    const formData = new FormData();
+    formData.append("email", email);
+    formData.append("name", name);
+    formData.append("organisationNr", organisationNr);
+    formData.append("paymentTerm", paymentTerm);
+    formData.append("phoneNumber", phoneNumber);
+    formData.append("reference", reference);
+    formData.append("vatNr", vatNr);
+    formData.append("website", website);
+    console.log(formData);
+    userKit
+      .editCustomerInfo(id, formData)
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  };
+
+  const renderCustomerInfo = () => (
     <div>
-      <h1>Customer page</h1>
       <p>email: {email}</p>
       <p>id: {id}</p>
       <p>name: {name}</p>
@@ -55,7 +79,52 @@ const CustomerPage = (props) => {
       <p>vatNr: {vatNr}</p>
       <p>website: {website}</p>
       <button onClick={() => handleDelete(id)}>Delete</button>
-      <button>Update</button>
+      <button onClick={() => handleUpdate(id)}>Update</button>
+    </div>
+  );
+
+  const drawUpdateCustomerInfoArea = () => (
+    <form>
+      <label>Email:</label>
+      <input value={email} onChange={(e) => setEmail(e.currentTarget.value)} />
+      <label>Name:</label>
+      <input value={name} onChange={(e) => setName(e.currentTarget.value)} />
+      <label>Organisation Nr:</label>
+      <input
+        value={organisationNr}
+        onChange={(e) => setOrganisationNr(e.currentTarget.value)}
+      />
+      <label>Payment Term:</label>
+      <input
+        value={paymentTerm}
+        onChange={(e) => setPaymentTerm(e.currentTarget.value)}
+      />
+      <label>PhoneNumber:</label>
+      <input
+        value={phoneNumber}
+        onChange={(e) => setPhoneNumber(e.currentTarget.value)}
+      />
+      <label>Reference:</label>
+      <input
+        value={reference}
+        onChange={(e) => setReference(e.currentTarget.value)}
+      />
+      <label>Vat Nr:</label>
+      <input value={vatNr} onChange={(e) => setVatNr(e.currentTarget.value)} />
+      <label>Website:</label>
+      <input
+        value={website}
+        onChange={(e) => setWebsite(e.currentTarget.value)}
+      />
+      <button onClick={saveUpdate}>Update</button>
+    </form>
+  );
+
+  return (
+    <div>
+      <h1>Customer page</h1>
+      {!isLoading && !isUpdating && renderCustomerInfo()}
+      {isUpdating && drawUpdateCustomerInfoArea()}
     </div>
   );
 };

@@ -68,6 +68,8 @@ export default class {
       headers: this.getPrivateHeaders(),
     });
   }
+  //    getCustomerList & getCustomer(id) -> they got the same results back...or maybe I am foolish
+
 
   async createCustomer(payload) {
     const url = `${ROOT_URL}api/v1/customers`;

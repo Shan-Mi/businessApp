@@ -48,6 +48,7 @@ const RegisterForm = () => {
   const [organisationName, setOrganisationName] = useState("");
   const [organisationKind, setOrganisationKind] = useState("");
   const [errors, setErrors] = useState("");
+  const [isRegisterSucessful, setIsRegisterSucessful] = useState(false);
 
   const inputItemsArray = [
     ["First Name", firstName, setFirstName],
@@ -117,6 +118,7 @@ const RegisterForm = () => {
       .catch((e) => console.error(e));
 
     console.log(user);
+    setIsRegisterSucessful(true);
   }
 
   return (
@@ -124,12 +126,17 @@ const RegisterForm = () => {
       <h2>Register</h2>
       <p>Enter Details to register:</p>
       {errors && <WarningContainer>{errors}</WarningContainer>}
-      <FormContainer>
-        {inputItemsArray.map(([placeholder, value, setValue], index) =>
-          renderInput(index, placeholder, value, setValue)
-        )}
-        <button onClick={handleRegister}>Register</button>
-      </FormContainer>
+      {!isRegisterSucessful && (
+        <FormContainer>
+          {inputItemsArray.map(([placeholder, value, setValue], index) =>
+            renderInput(index, placeholder, value, setValue)
+          )}
+          <button onClick={handleRegister}>Register</button>
+        </FormContainer>
+      )}
+      {isRegisterSucessful && (
+        <p>Please check your {email} E-mail address for login</p>
+      )}
     </FlexContainer>
   );
 };

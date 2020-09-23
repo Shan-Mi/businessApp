@@ -65,7 +65,10 @@ const Home = () => {
   return (
     <div>
       <h1>Welcome to Your Awesome Business App!</h1>
-      <div>{`Name: ${user.firstName} ${user.lastName} E-mail: ${user.email}`}</div>
+      <div>
+        <strong>Name: </strong>
+        {user.firstName} {user.lastName} <strong>E-mail: </strong> {user.email}
+      </div>
       <button>Logout</button>
 
       {customerNr === 0 ? (
