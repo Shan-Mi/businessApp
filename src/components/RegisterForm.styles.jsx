@@ -10,7 +10,7 @@ export const FlexContainer = styled.div`
     margin-bottom:0;
   }
 
-  p {
+  .form-title {
     font-family: "Pacifico", cursive;
     font-size:1rem;
     margin-bottom: 5px;
@@ -26,7 +26,8 @@ export const FormContainer = styled.form`
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  height: 625px;
+  /* height: 625px; */
+
   justify-content: space-between;
   align-items: center;
 
@@ -39,6 +40,7 @@ export const FormContainer = styled.form`
     border: 1px #fff solid;
     border-radius: 4px;
     background-color: #32425b;
+    color: white;
   }
 
   button {

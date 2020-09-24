@@ -80,7 +80,7 @@ const RegisterForm = () => {
   return (
     <FlexContainer>
       <h2>Register</h2>
-      <p>Enter Details to register:</p>
+      <p className="form-title">Enter Details to register:</p>
 
       {!isRegisterSucessful && (
         <FormContainer onSubmit={handleSubmit(onSubmit)}>
@@ -142,7 +142,9 @@ const RegisterForm = () => {
         </FormContainer>
       )}
       {isRegisterSucessful && (
-        <p>Please check your {email} E-mail address for login</p>
+        <p>
+          Please check your <strong>{email}</strong> E-mail address for login
+        </p>
       )}
     </FlexContainer>
   );
