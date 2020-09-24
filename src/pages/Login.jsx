@@ -18,14 +18,14 @@ const Login = () => {
   const [errors, setErrors] = useState(null);
 
   const userKit = new UserKit();
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     userKit
       .login(loginEmail, loginPassword)
       .then((res) => res.json())
       .then(({ token }) => {
         if (token) {
           userKit.setToken(token);
-          // console.log(token)
           history.push("/home");
         }
         setErrors("Invalid Email Address or Password!");
@@ -35,7 +35,7 @@ const Login = () => {
   console.log(uid, token);
 
   return (
-    <div>
+    <form onSubmit={handleLogin}>
       <h1>
         Your account is now active. Please login to get your customer
         information
@@ -56,8 +56,8 @@ const Login = () => {
           setErrors(null);
         }}
       />
-      <button onClick={handleLogin}>Login</button>
-    </div>
+      <button type="submit">Login</button>
+    </form>
   );
 };
 
