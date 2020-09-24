@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import UserKit from "../data/UserKit";
-import styled from "styled-components";
 import { UserContext } from "../context/GlobalContext";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";

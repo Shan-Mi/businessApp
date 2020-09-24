@@ -30,7 +30,7 @@ const Home = () => {
         // console.log(data)
         setCustomerNr(data.count);
       });
-  }, [customers]);
+  }, [customers, setCustomers]);
   /* 
   Object { id: 115, email: "ayumi919@163.com", firstName: "jane", lastName: "doe", role: 1 }
   */
@@ -93,7 +93,15 @@ const Home = () => {
 
       {}
       <hr />
-      <CreateNewCustomerForm />
+      {customerNr !== 10 && <CreateNewCustomerForm />}
+      {customerNr === 10 && (
+        <p>
+          You have reached maxmum customer amount, grats!
+          <span role="img" aria-label="ghost">
+            👻
+          </span>
+        </p>
+      )}
     </HomePageContainer>
   );
 };
