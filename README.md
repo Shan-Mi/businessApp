@@ -12,8 +12,11 @@
 
 ## API
 **URL:** "https://frebi.willandskill.eu/"
+
 **E-mail:** nackademin@willandskill.se
+
 **password:** js-fend-19
+
 **Swagger Navigation:** https://frebi.willandskill.eu/swagger/
 
 ## Requirement
@@ -39,5 +42,5 @@
 
 ## URL
 ROOT_URL: "https://frebi.willandskill.eu/"
-
+---
 📌 : extra requirement for VG
