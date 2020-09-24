@@ -26,9 +26,9 @@ export const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
     &:hover {
-      transform: scale(1.05);
-      transition: transform 100ms ease-in-out;
+      background: #1ED5B9;
+      transition: background 100ms ease-in-out;
     }
-    transition: transform 100ms ease-in-out;
+    transition: background 100ms ease-in-out;
   }
 `;

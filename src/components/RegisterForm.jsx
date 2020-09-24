@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";
 import * as Yup from "yup";
 import FormInput from "./FormInput";
-import { FlexContainer } from "./RegisterForm.styles";
+import { FlexContainer, FormContainer } from "./RegisterForm.styles";
 import { MyBtn } from "./MyBtn.styles";
 
 const userKit = new UserKit();
@@ -83,7 +83,7 @@ const RegisterForm = () => {
       <p>Enter Details to register:</p>
 
       {!isRegisterSucessful && (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <FormContainer onSubmit={handleSubmit(onSubmit)}>
           <FormInput
             id="firstName"
             type="firstName"
@@ -139,7 +139,7 @@ const RegisterForm = () => {
           />
 
           <MyBtn type="submit">Register a new user</MyBtn>
-        </form>
+        </FormContainer>
       )}
       {isRegisterSucessful && (
         <p>Please check your {email} E-mail address for login</p>

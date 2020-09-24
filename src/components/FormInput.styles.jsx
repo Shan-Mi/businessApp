@@ -2,18 +2,24 @@ import styled from "styled-components";
 
 export const InputFlexContainer = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   flex-basis: 1;
+  text-align: left;
 
+  label {
+    padding-bottom: 10px;
+  }
   input {
-    flex-basis: 250px;
+    /* flex-basis: 250px; */
+    height: 25px;
   }
 `;
 
 export const InputOutsideContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 500px;
+  width: 300px;
   margin: 0.5rem auto;
 
   p {
@@ -22,3 +28,5 @@ export const InputOutsideContainer = styled.div`
     margin: 0 0 0.5rem;
   }
 `;
+
+/* Element | http://localhost:3000/ */
