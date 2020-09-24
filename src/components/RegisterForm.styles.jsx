@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const FlexContainer = styled.div`
   display: flex;
@@ -7,29 +7,47 @@ export const FlexContainer = styled.div`
   h2 {
     font-family: "Pacifico", cursive;
     font-size: 3rem;
-    margin-bottom:0;
+    margin-bottom: 0;
   }
 
   .form-title {
     font-family: "Pacifico", cursive;
-    font-size:1rem;
+    font-size: 1rem;
     margin-bottom: 5px;
   }
 `;
+
+const registerFormStyles = css`
+  padding: 2rem 3rem 4rem;
+`;
+
+const newCustomerFormStyles = css`
+  padding: 1rem 2rem;
+  width: 40vw;
+
+  button {
+    margin-top: 0;
+  }
+`;
+
+const getFormStyles = ({customer})=>{
+  if(customer){
+    return newCustomerFormStyles;
+  }
+  return registerFormStyles;
+}
 
 export const FormContainer = styled.form`
   background: #32425b;
   width: 50vw;
   min-width: 400px;
-  padding: 2rem 3rem 4rem;
   margin: auto;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  /* height: 625px; */
-
   justify-content: space-between;
   align-items: center;
+
 
   label {
     color: #e1e5e8;
@@ -49,4 +67,5 @@ export const FormContainer = styled.form`
     color: #fff;
     font-weight: 400;
   }
+  ${getFormStyles}
 `;

@@ -4,6 +4,8 @@ import UserKit from "../data/UserKit";
 import { UserContext } from "../context/GlobalContext";
 import { Link, useHistory } from "react-router-dom";
 
+import { HomePageContainer } from "./Home.styles";
+
 const userKit = new UserKit();
 const Home = () => {
   const { user, setUser, customers, setCustomers } = useContext(UserContext);
@@ -38,7 +40,7 @@ const Home = () => {
   };
 
   const handleLogout = () => {
-    history.push('/');
+    history.push("/");
   };
 
   const renderCustomers = (customers) =>
@@ -62,16 +64,19 @@ const Home = () => {
           }}>
           Delete
         </button>
-        <button>Update</button>
+        {/* <button>Update</button> */}
       </div>
     ));
 
   return (
-    <div>
+    <HomePageContainer>
       <h1>Welcome to Your Awesome Business App!</h1>
-      <div>
+      <div className="user-info">
         <strong>Name: </strong>
-        {user.firstName} {user.lastName} <strong>E-mail: </strong> {user.email}
+        <span>
+          {user.firstName} {user.lastName}
+        </span>
+        <strong>E-mail: </strong> <span>{user.email}</span>
       </div>
       <button onClick={handleLogout}>Logout</button>
 
@@ -79,7 +84,9 @@ const Home = () => {
         <h3>You don't have any customer.</h3>
       ) : (
         <>
-          <p>Your customers number is: {customerNr}</p>
+          <p className="customer-number-info">
+            Your customers number is: <strong>{customerNr}</strong>
+          </p>
           {renderCustomers(customers)}
         </>
       )}
@@ -87,7 +94,7 @@ const Home = () => {
       {}
       <hr />
       <CreateNewCustomerForm />
-    </div>
+    </HomePageContainer>
   );
 };
 

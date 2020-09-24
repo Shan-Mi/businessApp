@@ -6,6 +6,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";
 import * as Yup from "yup";
 import FormInput from "./FormInput";
+// import { CreateNewCustomerFormContainer } from "./CreateNewCustomer.styles";
+import { FormContainer } from "./RegisterForm.styles";
+import { MyBtn } from "./MyBtn.styles";
 
 export const TableContainer = styled.table`
   margin: auto;
@@ -77,7 +80,7 @@ const CreateNewCustomerForm = () => {
   };
 
   return (
-    <div>
+    <FormContainer customer>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           id="name"
@@ -145,9 +148,9 @@ const CreateNewCustomerForm = () => {
           error={errors.phoneNumber}
         />
 
-        <button type="submit">Create a new customer</button>
+        <MyBtn type="submit">Create a new customer</MyBtn>
       </form>
-    </div>
+    </FormContainer>
   );
 };
 
