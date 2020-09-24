@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";
 import * as Yup from "yup";
 import FormInput from "./FormInput";
-// import { CreateNewCustomerFormContainer } from "./CreateNewCustomer.styles";
 import { FormContainer } from "./RegisterForm.styles";
 import { MyBtn } from "./MyBtn.styles";
 
@@ -46,7 +45,7 @@ const CreateNewCustomerForm = () => {
       .max(254, "Maxmum 254 characters"),
     phoneNumber: Yup.string().matches(
       /^(?=(.*\d){8})[a-zA-Z\d]{10,20}$/,
-      "MinMaxmum 20 digital"
+      "Minmun 10, Maxmum 20 digital"
     ),
   });
 

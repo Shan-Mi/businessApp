@@ -27,3 +27,11 @@ export const HomePageContainer = styled.div`
     }
   }
 `;
+
+export const CustomerInfoContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 50vw;
+  min-width: 400px;
+  margin: 5px auto;
+`;

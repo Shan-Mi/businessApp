@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import UserKit from "../data/UserKit";
+import { BtnSmall } from "../components/MyBtn.styles";
 
 const userKit = new UserKit();
 
@@ -78,7 +79,7 @@ const CustomerPage = (props) => {
       <p>reference: {reference}</p>
       <p>vatNr: {vatNr}</p>
       <p>website: {website}</p>
-      <button onClick={() => handleDelete(id)}>Delete</button>
+      <BtnSmall onClick={() => handleDelete(id)}>Delete</BtnSmall>
       <button onClick={() => handleUpdate(id)}>Update</button>
     </div>
   );

@@ -3,8 +3,8 @@ import CreateNewCustomerForm from "../components/CreateNewCustomer";
 import UserKit from "../data/UserKit";
 import { UserContext } from "../context/GlobalContext";
 import { Link, useHistory } from "react-router-dom";
-
-import { HomePageContainer } from "./Home.styles";
+import { BtnSmall } from "../components/MyBtn.styles";
+import { HomePageContainer, CustomerInfoContainer } from "./Home.styles";
 
 const userKit = new UserKit();
 const Home = () => {
@@ -45,7 +45,7 @@ const Home = () => {
 
   const renderCustomers = (customers) =>
     customers.map(({ name, organisationNr, reference, id }, index) => (
-      <div key={index}>
+      <CustomerInfoContainer key={index}>
         <Link to={`/home/${id}`}>
           <span>
             <strong>Name:</strong> {name}
@@ -58,14 +58,14 @@ const Home = () => {
           </span>
         </Link>
 
-        <button
+        <BtnSmall
           onClick={() => {
             handleDelete(id);
           }}>
           Delete
-        </button>
+        </BtnSmall>
         {/* <button>Update</button> */}
-      </div>
+      </CustomerInfoContainer>
     ));
 
   return (
