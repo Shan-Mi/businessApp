@@ -70,7 +70,6 @@ export default class {
   }
   //    getCustomerList & getCustomer(id) -> they got the same results back...or maybe I am foolish
 
-
   async createCustomer(payload) {
     const url = `${ROOT_URL}api/v1/customers`;
     return fetch(url, {
@@ -88,11 +87,9 @@ export default class {
     });
   }
 
-  async editCustomerInfo(id, ...args) {
+  async editCustomerInfo(id, payload) {
     const url = `${ROOT_URL}api/v1/customers/${id}/ `;
-    const payload = {
-      ...args,
-    };
+
     return fetch(url, {
       method: "PUT",
       headers: this.getPrivateHeaders(),

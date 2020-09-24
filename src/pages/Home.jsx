@@ -2,12 +2,12 @@ import React, { useState, useContext, useEffect } from "react";
 import CreateNewCustomerForm from "../components/CreateNewCustomer";
 import UserKit from "../data/UserKit";
 import { UserContext } from "../context/GlobalContext";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const userKit = new UserKit();
 const Home = () => {
   const { user, setUser, customers, setCustomers } = useContext(UserContext);
-
+  const history = useHistory();
   const [customerNr, setCustomerNr] = useState("");
 
   useEffect(() => {
@@ -35,6 +35,10 @@ const Home = () => {
   const handleDelete = (id) => {
     console.log(id);
     userKit.deleteCustomer(id);
+  };
+
+  const handleLogout = () => {
+    history.push('/');
   };
 
   const renderCustomers = (customers) =>
@@ -69,7 +73,7 @@ const Home = () => {
         <strong>Name: </strong>
         {user.firstName} {user.lastName} <strong>E-mail: </strong> {user.email}
       </div>
-      <button>Logout</button>
+      <button onClick={handleLogout}>Logout</button>
 
       {customerNr === 0 ? (
         <h3>You don't have any customer.</h3>

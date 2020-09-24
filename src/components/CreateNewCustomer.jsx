@@ -78,7 +78,6 @@ const CreateNewCustomerForm = () => {
 
   return (
     <div>
-      {/* <button onClick={handleCreateCustomer}>Add one new customer</button> */}
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           id="name"
@@ -146,7 +145,7 @@ const CreateNewCustomerForm = () => {
           error={errors.phoneNumber}
         />
 
-        <button type="submit">Create a new user</button>
+        <button type="submit">Create a new customer</button>
       </form>
     </div>
   );

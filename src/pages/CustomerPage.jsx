@@ -61,7 +61,7 @@ const CustomerPage = (props) => {
     formData.append("vatNr", vatNr);
     formData.append("website", website);
     console.log(formData);
-    userKit
+    return userKit
       .editCustomerInfo(id, formData)
       .then((res) => res.json())
       .then((data) => console.log(data));
