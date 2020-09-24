@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import UserKit from "../data/UserKit";
 import { BtnSmall } from "../components/MyBtn.styles";
+import { CustomerInfoContainer } from "./CustomerPage.styles";
 
 const userKit = new UserKit();
 
-const CustomerPage = (props) => {
+const CustomerPage = () => {
   const { id } = useParams();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -69,19 +70,46 @@ const CustomerPage = (props) => {
   };
 
   const renderCustomerInfo = () => (
-    <div>
-      <p>email: {email}</p>
-      <p>id: {id}</p>
-      <p>name: {name}</p>
-      <p>organisationNr: {organisationNr}</p>
-      <p>paymentTerm: {paymentTerm}</p>
-      <p>phoneNumber: {phoneNumber}</p>
-      <p>reference: {reference}</p>
-      <p>vatNr: {vatNr}</p>
-      <p>website: {website}</p>
-      <BtnSmall onClick={() => handleDelete(id)}>Delete</BtnSmall>
-      <button onClick={() => handleUpdate(id)}>Update</button>
-    </div>
+    <CustomerInfoContainer>
+      <p>
+        <strong>E-mail: </strong>
+        {email}
+      </p>
+      <p>
+        <strong>ID: </strong>
+        {id}
+      </p>
+      <p>
+        <strong>Name:</strong> {name}
+      </p>
+      <p>
+        <strong>Organisation Nr:</strong> {organisationNr}
+      </p>
+      <p>
+        <strong>Payment Term: </strong>
+        {paymentTerm}
+      </p>
+      <p>
+        <strong>Phone Number: </strong>
+        {phoneNumber}
+      </p>
+      <p>
+        <strong>Reference: </strong>
+        {reference}
+      </p>
+      <p>
+        <strong>Vat Nr: </strong>
+        {vatNr}
+      </p>
+      <p>
+        <strong>Website: </strong>
+        {website}
+      </p>
+      <div>
+        <BtnSmall onClick={() => handleDelete(id)}>Delete</BtnSmall>
+        <BtnSmall onClick={() => handleUpdate(id)}>Update</BtnSmall>
+      </div>
+    </CustomerInfoContainer>
   );
 
   const drawUpdateCustomerInfoArea = () => (

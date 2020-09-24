@@ -36,6 +36,6 @@ export default App;
 /* 
 font-family: 'Pacifico', cursive;  => title
 font-family: 'Lato', sans-serif;
-
+font-family: 'PT Sans Narrow', sans-serif;
 https://dribbble.com/shots/5729803-Registration-Form-With-Dark-UI/attachments => layout for register
 */
