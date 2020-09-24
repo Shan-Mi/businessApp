@@ -40,6 +40,7 @@ const Home = () => {
   };
 
   const handleLogout = () => {
+    userKit.deleteToken();
     history.push("/");
   };
 

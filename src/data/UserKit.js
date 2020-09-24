@@ -110,6 +110,10 @@ export default class {
     return localStorage.getItem("BUSINESS_TOKEN");
   }
 
+  deleteToken() {
+    localStorage.setItem("BUSINESS_TOKEN", "");
+  }
+
   getPublicHeaders() {
     return {
       "Content-Type": "application/json",
