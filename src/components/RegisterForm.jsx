@@ -6,40 +6,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";
 import * as Yup from "yup";
 import FormInput from "./FormInput";
-
-const FlexContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const FormContainer = styled.div`
-  text-align: left;
-  margin: auto;
-
-  button {
-    padding: 0.5rem 1rem;
-    display: block;
-    margin: 1.5rem auto;
-    font-size: 1rem;
-  }
-`;
-
-const InputContainer = styled.div`
-  margin: 0.5rem 0;
-  font-size: 1.2rem;
-  label {
-    margin-right: 1rem;
-  }
-  input {
-    height: 1.3rem;
-    font-size: 1rem;
-    width: 200px;
-  }
-`;
-
-const WarningContainer = styled.p`
-  color: red;
-`;
+import { FlexContainer } from "./RegisterForm.styles";
+import { MyBtn } from "./MyBtn.styles";
 
 const userKit = new UserKit();
 
@@ -170,7 +138,7 @@ const RegisterForm = () => {
             error={errors.organisationKind}
           />
 
-          <button type="submit">Register a new user</button>
+          <MyBtn type="submit">Register a new user</MyBtn>
         </form>
       )}
       {isRegisterSucessful && (

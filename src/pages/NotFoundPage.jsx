@@ -5,7 +5,7 @@ class NotFoundPage extends React.Component {
     return (
       <div>
         <img
-          src="https://i.imgur.com/lKJiT77.png"
+          src="https://i.imgur.com/Q2BAOd2.png"
           alt="not-found-img-placeholder"
         />
         <p className="text-center">
@@ -17,7 +17,7 @@ class NotFoundPage extends React.Component {
           </strong>
         </p>
         <p className="text-center">
-          <Link to="/">Go to Home </Link>
+          <Link to="/">Go back to HomePage </Link>
         </p>
       </div>
     );
