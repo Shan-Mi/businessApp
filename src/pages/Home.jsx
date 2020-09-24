@@ -77,8 +77,10 @@ const Home = () => {
           {user.firstName} {user.lastName}
         </span>
         <strong>E-mail: </strong> <span>{user.email}</span>
+        <BtnSmall logout onClick={handleLogout}>
+          Logout
+        </BtnSmall>
       </div>
-      <button onClick={handleLogout}>Logout</button>
 
       {customerNr === 0 ? (
         <h3>You don't have any customer.</h3>
@@ -90,9 +92,8 @@ const Home = () => {
           {renderCustomers(customers)}
         </>
       )}
-
-      {}
       <hr />
+
       {customerNr !== 10 && <CreateNewCustomerForm />}
       {customerNr === 10 && (
         <p>

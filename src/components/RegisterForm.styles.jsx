@@ -30,12 +30,12 @@ const newCustomerFormStyles = css`
   }
 `;
 
-const getFormStyles = ({customer})=>{
-  if(customer){
+const getFormStyles = ({ customer }) => {
+  if (customer) {
     return newCustomerFormStyles;
   }
   return registerFormStyles;
-}
+};
 
 export const FormContainer = styled.form`
   background: #32425b;
@@ -47,7 +47,6 @@ export const FormContainer = styled.form`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-
 
   label {
     color: #e1e5e8;

@@ -15,15 +15,8 @@ export const CustomerInfoContainer = styled.div`
     button {
       width: 100%;
       padding: 0.5rem;
-      border-radius: 3px;
-      border: none;
       font-size: 1rem;
-      font-family: "PT Sans Narrow", sans-serif;
       margin-top: 1rem;
-
-      &:hover {
-        color: white;
-      }
     }
   }
 `;

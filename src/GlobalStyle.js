@@ -26,9 +26,9 @@ export const GlobalStyle = createGlobalStyle`
   button {
     cursor: pointer;
     &:hover {
-      background: #1ED5B9;
-      transition: background 100ms ease-in-out;
+      background-color: #1ED5B9;
+      transition: background-color 100ms ease-in-out;
     }
-    transition: background 100ms ease-in-out;
+    transition: background-color 100ms ease-in-out;
   }
 `;
