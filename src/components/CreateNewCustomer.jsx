@@ -24,7 +24,7 @@ const CreateNewCustomerForm = () => {
     organisationNr: Yup.string().trim().max(30, "Maxmum characters 30"),
     vatNr: Yup.string()
       .trim()
-      .matches(/^se\d{1,13}$/i, "Begin with SE, max 15 characters")
+      .matches(/^se\d{10}$/i, "SE + 10 digits: SE1234567890")
       .required("Required"),
     reference: Yup.string().trim().max(50, "Maxmum 50 characters"),
     paymentTerm: Yup.string()

@@ -34,4 +34,7 @@ export const CustomerInfoContainer = styled.div`
   width: 50vw;
   min-width: 400px;
   margin: 5px auto;
+  span {
+    padding-right: 15px;
+  }
 `;
