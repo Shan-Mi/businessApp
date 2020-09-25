@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import UserKit from "../data/UserKit";
 import styled from "styled-components";
@@ -16,10 +16,27 @@ const Login = () => {
   const [loginEmail, setLoginEmail] = useState(null);
   const [loginPassword, setLoginPassword] = useState(null);
   const [errors, setErrors] = useState(null);
-
+  const [isActiveUser, setIsActiveUser] = useState(true);
   const userKit = new UserKit();
+
+  useEffect(() => {
+    userKit
+      .activateUser(uid, token)
+      .then((res) => {
+        res.json();
+        console.log(res);
+        if (!res.ok) {
+          setIsActiveUser(false);
+        }
+      })
+      .then((data) => console.log(data)); // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleLogin = (e) => {
     e.preventDefault();
+    if (!isActiveUser) {
+      history.push("/invalid");
+    }
     userKit
       .login(loginEmail, loginPassword)
       .then((res) => res.json())
@@ -32,14 +49,17 @@ const Login = () => {
       });
   };
 
-  console.log(uid, token);
+  // console.log(uid, token);
 
   return (
     <form onSubmit={handleLogin}>
-      <h1>
-        Your account is now active. Please login to get your customer
-        information
-      </h1>
+      {isActiveUser && (
+        <h1>
+          Your account is now active. Please login to get your customer
+          information
+        </h1>
+      )}
+      {!isActiveUser && <h1>You need to login via verification mail first.</h1>}
       {errors && <WarningContainer>{errors}</WarningContainer>}
       <input
         placeholder="Email Address"
