@@ -28,5 +28,3 @@ export const InputOutsideContainer = styled.div`
     margin: 0 0 0.5rem;
   }
 `;
-
-/* Element | http://localhost:3000/ */

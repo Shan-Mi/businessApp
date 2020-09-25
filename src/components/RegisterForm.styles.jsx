@@ -64,6 +64,10 @@ export const FormContainer = styled.form`
     border-radius: 4px;
     background-color: #32425b;
     color: white;
+
+    &:hover {
+      background-color: #4b484f;
+    }
   }
 
   button {

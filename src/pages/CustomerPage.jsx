@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import UserKit from "../data/UserKit";
 import { BtnSmall } from "../components/MyBtn.styles";
 import { CustomerInfoContainer } from "./CustomerPage.styles";
-
+import { MyBtn } from "../components/MyBtn.styles";
 const userKit = new UserKit();
 
 const CustomerPage = () => {
@@ -54,6 +54,10 @@ const CustomerPage = () => {
     drawUpdateCustomerInfoArea();
   };
 
+  const handleClick = () => {
+    history.push("/home");
+  };
+
   const saveUpdate = () => {
     setIsUpdating(false);
 
@@ -77,15 +81,15 @@ const CustomerPage = () => {
   const renderCustomerInfo = () => (
     <CustomerInfoContainer>
       <p>
-        <strong>E-mail: </strong>
-        {email}
-      </p>
-      <p>
         <strong>ID: </strong>
         {id}
       </p>
       <p>
         <strong>Name:</strong> {name}
+      </p>
+      <p>
+        <strong>E-mail: </strong>
+        {email}
       </p>
       <p>
         <strong>Organisation Nr:</strong> {organisationNr}
@@ -118,11 +122,11 @@ const CustomerPage = () => {
   );
 
   const drawUpdateCustomerInfoArea = () => (
-    <form>
-      <label>Email:</label>
-      <input value={email} onChange={(e) => setEmail(e.currentTarget.value)} />
+    <CustomerInfoContainer update>
       <label>Name:</label>
       <input value={name} onChange={(e) => setName(e.currentTarget.value)} />
+      <label>Email:</label>
+      <input value={email} onChange={(e) => setEmail(e.currentTarget.value)} />
       <label>Organisation Nr:</label>
       <input
         value={organisationNr}
@@ -150,13 +154,14 @@ const CustomerPage = () => {
         value={website}
         onChange={(e) => setWebsite(e.currentTarget.value)}
       />
-      <button onClick={saveUpdate}>Update</button>
-    </form>
+      <BtnSmall onClick={saveUpdate}>Update</BtnSmall>
+    </CustomerInfoContainer>
   );
 
   return (
     <div>
       <h1>Customer page</h1>
+      <BtnSmall onClick={handleClick}>Go back to HomePage</BtnSmall>
       {!isLoading && !isUpdating && renderCustomerInfo()}
       {isUpdating && drawUpdateCustomerInfoArea()}
     </div>
