@@ -26,10 +26,10 @@ const registerFormStyles = css`
 const newCustomerFormStyles = css`
   padding: 1rem 2rem;
   width: 40vw;
-  position: absolute;
-  top: 60px;
-  left: 50%;
-  transform: translateX(-50%);
+  // position: absolute;
+  // top: 60px;
+  // left: 50%;
+  // transform: translateX(-50%);
 
   button {
     margin-top: 0;

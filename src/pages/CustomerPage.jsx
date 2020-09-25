@@ -8,6 +8,8 @@ const userKit = new UserKit();
 
 const CustomerPage = () => {
   const { id } = useParams();
+  const [originalCustomer, setOriginalCustomer] = useState("");
+
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [organisationNr, setOrganisationNr] = useState("");
@@ -38,6 +40,7 @@ const CustomerPage = () => {
         setWebsite(currentCustomer.website);
         setIsLoading(false);
         console.log(currentCustomer);
+        setOriginalCustomer(currentCustomer);
       });
   }, []);
 
@@ -53,18 +56,20 @@ const CustomerPage = () => {
 
   const saveUpdate = () => {
     setIsUpdating(false);
-    const formData = new FormData();
-    formData.append("email", email);
-    formData.append("name", name);
-    formData.append("organisationNr", organisationNr);
-    formData.append("paymentTerm", paymentTerm);
-    formData.append("phoneNumber", phoneNumber);
-    formData.append("reference", reference);
-    formData.append("vatNr", vatNr);
-    formData.append("website", website);
-    console.log(formData);
+
+    const updatedCustomer = {
+      ...originalCustomer,
+      email,
+      name,
+      organisationNr,
+      paymentTerm,
+      phoneNumber,
+      reference,
+      vatNr,
+      website,
+    };
     return userKit
-      .editCustomerInfo(id, formData)
+      .editCustomerInfo(id, updatedCustomer)
       .then((res) => res.json())
       .then((data) => console.log(data));
   };
