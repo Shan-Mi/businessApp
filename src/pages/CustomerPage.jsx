@@ -3,7 +3,11 @@ import { useHistory, useParams } from "react-router-dom";
 import UserKit from "../data/UserKit";
 import { BtnSmall } from "../components/MyBtn.styles";
 import { CustomerInfoContainer } from "./CustomerPage.styles";
-import { MyBtn } from "../components/MyBtn.styles";
+import FormInput from "../components/FormInput";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers";
+import { schema } from "../components/CreateNewCustomer";
+import { FormContainer } from "../components/RegisterForm.styles";
 const userKit = new UserKit();
 
 const CustomerPage = () => {
@@ -58,9 +62,13 @@ const CustomerPage = () => {
     history.push("/home");
   };
 
+  const { register, handleSubmit, errors } = useForm({
+    resolver: yupResolver(schema),
+  });
+
   const saveUpdate = () => {
     setIsUpdating(false);
-
+    console.log("click");
     const updatedCustomer = {
       ...originalCustomer,
       email,
@@ -122,45 +130,97 @@ const CustomerPage = () => {
   );
 
   const drawUpdateCustomerInfoArea = () => (
-    <CustomerInfoContainer update>
-      <label>Name:</label>
-      <input value={name} onChange={(e) => setName(e.currentTarget.value)} />
-      <label>Email:</label>
-      <input value={email} onChange={(e) => setEmail(e.currentTarget.value)} />
-      <label>Organisation Nr:</label>
-      <input
+    <FormContainer update onSubmit={handleSubmit(saveUpdate)}>
+      <FormInput
+        id="name"
+        type="name"
+        name="name"
+        label="Name *"
+        value={name}
+        onChange={(e) => setName(e.currentTarget.value)}
+        register={register}
+        error={errors.name}
+      />
+      <FormInput
+        id="organisationNr"
+        type="organisationNr"
+        name="organisationNr"
+        label="organisationNr"
         value={organisationNr}
         onChange={(e) => setOrganisationNr(e.currentTarget.value)}
+        register={register}
+        error={errors.organisationNr}
       />
-      <label>Payment Term:</label>
-      <input
-        value={paymentTerm}
-        onChange={(e) => setPaymentTerm(e.currentTarget.value)}
+      <FormInput
+        id="vatNr"
+        type="vatNr"
+        name="vatNr"
+        label="vatNr *"
+        value={vatNr}
+        onChange={(e) => setVatNr(e.currentTarget.value)}
+        register={register}
+        error={errors.vatNr}
       />
-      <label>PhoneNumber:</label>
-      <input
-        value={phoneNumber}
-        onChange={(e) => setPhoneNumber(e.currentTarget.value)}
-      />
-      <label>Reference:</label>
-      <input
+
+      <FormInput
+        id="reference"
+        type="reference"
+        name="reference"
+        label="reference"
         value={reference}
         onChange={(e) => setReference(e.currentTarget.value)}
+        register={register}
+        error={errors.reference}
       />
-      <label>Vat Nr:</label>
-      <input value={vatNr} onChange={(e) => setVatNr(e.currentTarget.value)} />
-      <label>Website:</label>
-      <input
+      <FormInput
+        id="paymentTerm"
+        type="paymentTerm"
+        name="paymentTerm"
+        label="PaymentTerm *"
+        value={paymentTerm}
+        onChange={(e) => setPaymentTerm(e.currentTarget.value)}
+        register={register}
+        error={errors.paymentTerm}
+      />
+      <FormInput
+        id="website"
+        type="website"
+        name="website"
+        label="Website"
         value={website}
         onChange={(e) => setWebsite(e.currentTarget.value)}
+        register={register}
+        error={errors.website}
       />
-      <BtnSmall onClick={saveUpdate}>Update</BtnSmall>
-    </CustomerInfoContainer>
+      <FormInput
+        id="email"
+        type="email"
+        name="email"
+        label="Email:"
+        value={email}
+        onChange={(e) => setEmail(e.currentTarget.value)}
+        register={register}
+        error={errors.email}
+      />
+      <FormInput
+        id="phoneNumber"
+        type="phoneNumber"
+        name="phoneNumber"
+        label="Phone Number:"
+        value={phoneNumber}
+        onChange={(e) => setPhoneNumber(e.currentTarget.value)}
+        register={register}
+        error={errors.phoneNumber}
+      />
+
+      <BtnSmall type="submit">Update</BtnSmall>
+    </FormContainer>
   );
 
   return (
     <div>
-      <h1>Customer page</h1>
+      {!isLoading && !isUpdating && <h1>Customer Information Details:</h1>}
+      {isUpdating && <h1>Editing Customer Information:</h1>}
       <BtnSmall onClick={handleClick}>Go back to HomePage</BtnSmall>
       {!isLoading && !isUpdating && renderCustomerInfo()}
       {isUpdating && drawUpdateCustomerInfoArea()}

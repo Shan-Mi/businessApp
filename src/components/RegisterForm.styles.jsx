@@ -19,9 +19,7 @@ export const FlexContainer = styled.div`
 
 const registerFormStyles = css`
   padding: 2rem 3rem 4rem;
-  
 `;
-
 
 const newCustomerFormStyles = css`
   padding: 1rem 2rem;
@@ -36,11 +34,28 @@ const newCustomerFormStyles = css`
   }
 `;
 
+const customerUpdateStyles = css`
+  margin-top: 2rem;
+
+  button {
+    &:hover {
+      background-color: #2591ff;
+      color: #260d0d;
+    }
+  }
+`;
+
 const getFormStyles = ({ customer }) => {
   if (customer) {
     return newCustomerFormStyles;
   }
   return registerFormStyles;
+};
+
+const getUpdateStyles = ({ update }) => {
+  if (update) {
+    return customerUpdateStyles;
+  }
 };
 
 export const FormContainer = styled.form`
@@ -75,6 +90,10 @@ export const FormContainer = styled.form`
     width: 300px;
     color: #fff;
     font-weight: 400;
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-top: 1rem;
   }
   ${getFormStyles}
+  ${getUpdateStyles}
 `;
