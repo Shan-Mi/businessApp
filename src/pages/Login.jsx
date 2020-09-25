@@ -70,7 +70,9 @@ const Login = () => {
           information
         </h1>
       )}
-      {!isActiveUser && <h1>You need to login via verification mail first.</h1>}
+      {!isActiveUser && (
+        <h1>You need to login via email verification first.</h1>
+      )}
       {errors && <WarningContainer>{errors}</WarningContainer>}
       <input
         placeholder="Email Address"

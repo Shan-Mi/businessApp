@@ -37,4 +37,20 @@ export const CustomerInfoContainer = styled.div`
   span {
     padding-right: 15px;
   }
+
+  a {
+    display: flex;
+    flex-basis: 80%;
+    justify-content: space-between;
+
+    span {
+      &:first-of-type {
+        flex-basis: 29%;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
 `;

@@ -221,7 +221,9 @@ const CustomerPage = () => {
     <div>
       {!isLoading && !isUpdating && <h1>Customer Information Details:</h1>}
       {isUpdating && <h1>Editing Customer Information:</h1>}
-      <BtnSmall onClick={handleClick}>Go back to HomePage</BtnSmall>
+      {!isLoading && (
+        <BtnSmall onClick={handleClick}>Go back to HomePage</BtnSmall>
+      )}
       {!isLoading && !isUpdating && renderCustomerInfo()}
       {isUpdating && drawUpdateCustomerInfoArea()}
     </div>
