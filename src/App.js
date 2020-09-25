@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import NotFoundPage from "./pages/NotFoundPage";
 
 import styled from "styled-components";
+import InvalidPage from "./pages/InvalidPage";
 const RootContainer = styled.div`
   min-height: 100vh;
 `;
@@ -22,7 +23,9 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/home" exact component={Home} />
         <Route path="/home/:id" exact component={CustomerPage} />
+        <Route path='/invalid' exact component={InvalidPage} />
         <Route path="*" component={NotFoundPage} />
+        
       </Switch>
     </RootContainer>
   );
