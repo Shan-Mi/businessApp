@@ -159,21 +159,3 @@ const CustomerPage = () => {
 };
 
 export default CustomerPage;
-/* 
-[…]
-​
-0: Object { id: 821, name: "sd", organisationNr: "asdf", … }
-
-address: Array []
-email: "12@1.com"​
-id: 821​​
-name: "sd"​​
-organisationNr: "asdf"​​​
-paymentTerm: 111​​
-phoneNumber: "01001010"​​
-reference: "dafd"​​
-vatNr: "SE1234567890"​​
-website: "sas"
-​
-1: Object { id: 830, name: "fafa", organisationNr: "fafa", … }
-*/

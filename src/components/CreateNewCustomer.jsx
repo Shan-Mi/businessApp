@@ -9,10 +9,6 @@ import FormInput from "./FormInput";
 import { FormContainer } from "./RegisterForm.styles";
 import { MyBtn } from "./MyBtn.styles";
 
-export const TableContainer = styled.table`
-  margin: auto;
-`;
-
 const userKit = new UserKit();
 
 const CreateNewCustomerForm = () => {
