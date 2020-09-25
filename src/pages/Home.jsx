@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import CreateNewCustomerForm from "../components/CreateNewCustomer";
 import UserKit from "../data/UserKit";
 import { UserContext } from "../context/GlobalContext";
@@ -9,8 +9,42 @@ import { HomePageContainer, CustomerInfoContainer } from "./Home.styles";
 const userKit = new UserKit();
 const Home = () => {
   const MAX_CUSTOMER_NUM = 10;
-  const { user, customers, customerNr } = useContext(UserContext);
+  const {
+    user,
+    customers,
+    customerNr,
+    setUser,
+    setCustomers,
+    setCustomerNr,
+  } = useContext(UserContext);
   const history = useHistory();
+
+  useEffect(() => {
+    if (!userKit.getToken()) {
+      history.push("/invalid");
+    }
+
+    userKit
+      .getLoginUser()
+      .then((res) => res.json())
+      .then(({ email, firstName, lastName }) =>
+        setUser({ email, firstName, lastName })
+      );
+    console.log("get user"); // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    userKit
+      .getCustomerList()
+      .then((res) => res.json())
+      .then((data) => {
+        setCustomers(data.results);
+        setCustomerNr(data.count);
+      });
+    // console.log('get customer')
+    //  multiple rendering...need to solve it
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [customers, customerNr]);
 
   const handleDelete = (id) => {
     userKit.deleteCustomer(id);
@@ -67,7 +101,7 @@ const Home = () => {
           <p className="customer-number-info">
             Your customers number is: <strong>{customerNr}</strong>
           </p>
-          {renderCustomers(customers)}
+          {customers && renderCustomers(customers)}
         </>
       )}
       <hr />
@@ -75,7 +109,7 @@ const Home = () => {
       {customerNr !== MAX_CUSTOMER_NUM && <CreateNewCustomerForm />}
       {customerNr === MAX_CUSTOMER_NUM && (
         <p>
-          You have reached maxmum customer amount, grats!
+          You have reached maxmum customer amount, congrats!
           <span role="img" aria-label="ghost">
             👻
           </span>
