@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import CreateNewCustomerForm from "../components/CreateNewCustomer";
 import UserKit from "../data/UserKit";
 import { UserContext } from "../context/GlobalContext";

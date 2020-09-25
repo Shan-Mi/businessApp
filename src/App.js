@@ -21,11 +21,7 @@ function App() {
         <Route path="/" exact component={RegisterForm} />
         <Route path="/login" exact component={Login} />
         <Route path="/home" exact component={Home} />
-        <Route
-          path="/home/:id"
-          exact component={CustomerPage}
-           />}
-        />
+        <Route path="/home/:id" exact component={CustomerPage} />
         <Route path="*" component={NotFoundPage} />
       </Switch>
     </RootContainer>

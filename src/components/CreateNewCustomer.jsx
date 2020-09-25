@@ -74,76 +74,73 @@ const CreateNewCustomerForm = () => {
   };
 
   return (
-    <FormContainer customer>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <FormInput
-          id="name"
-          type="name"
-          name="name"
-          label="Name *"
-          register={register}
-          error={errors.name}
-        />
-        <FormInput
-          id="organisationNr"
-          type="organisationNr"
-          name="organisationNr"
-          label="organisationNr"
-          register={register}
-          error={errors.organisationNr}
-        />
-        <FormInput
-          id="vatNr"
-          type="vatNr"
-          name="vatNr"
-          label="vatNr *"
-          register={register}
-          error={errors.vatNr}
-        />
+    <FormContainer customer onSubmit={handleSubmit(onSubmit)}>
+      <FormInput
+        id="name"
+        type="name"
+        name="name"
+        label="Name *"
+        register={register}
+        error={errors.name}
+      />
+      <FormInput
+        id="organisationNr"
+        type="organisationNr"
+        name="organisationNr"
+        label="organisationNr"
+        register={register}
+        error={errors.organisationNr}
+      />
+      <FormInput
+        id="vatNr"
+        type="vatNr"
+        name="vatNr"
+        label="vatNr *"
+        register={register}
+        error={errors.vatNr}
+      />
 
-        <FormInput
-          id="reference"
-          type="reference"
-          name="reference"
-          label="reference"
-          register={register}
-          error={errors.reference}
-        />
-        <FormInput
-          id="paymentTerm"
-          type="paymentTerm"
-          name="paymentTerm"
-          label="PaymentTerm *"
-          register={register}
-          error={errors.paymentTerm}
-        />
-        <FormInput
-          id="website"
-          type="website"
-          name="website"
-          label="Website"
-          register={register}
-          error={errors.website}
-        />
-        <FormInput
-          id="email"
-          type="email"
-          name="email"
-          label="Email:"
-          register={register}
-          error={errors.email}
-        />
-        <FormInput
-          id="phoneNumber"
-          type="phoneNumber"
-          name="phoneNumber"
-          label="Phone Number:"
-          register={register}
-          error={errors.phoneNumber}
-        />
-
-        <MyBtn type="submit">Create a new customer</MyBtn>
-      </form>
+      <FormInput
+        id="reference"
+        type="reference"
+        name="reference"
+        label="reference"
+        register={register}
+        error={errors.reference}
+      />
+      <FormInput
+        id="paymentTerm"
+        type="paymentTerm"
+        name="paymentTerm"
+        label="PaymentTerm *"
+        register={register}
+        error={errors.paymentTerm}
+      />
+      <FormInput
+        id="website"
+        type="website"
+        name="website"
+        label="Website"
+        register={register}
+        error={errors.website}
+      />
+      <FormInput
+        id="email"
+        type="email"
+        name="email"
+        label="Email:"
+        register={register}
+        error={errors.email}
+      />
+      <FormInput
+        id="phoneNumber"
+        type="phoneNumber"
+        name="phoneNumber"
+        label="Phone Number:"
+        register={register}
+        error={errors.phoneNumber}
+      />
+      <MyBtn type="submit">Create a new customer</MyBtn>
     </FormContainer>
   );
 };
