@@ -23,8 +23,8 @@ function App() {
         <Route path="/home" exact component={Home} />
         <Route
           path="/home/:id"
-          exact
-          render={(props) => <CustomerPage {...props} />}
+          exact component={CustomerPage}
+           />}
         />
         <Route path="*" component={NotFoundPage} />
       </Switch>

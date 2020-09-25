@@ -1,6 +1,5 @@
 // TODO hook-form seems nice, will try this one out later.
 import React from "react";
-import styled from "styled-components";
 import UserKit from "../data/UserKit";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";

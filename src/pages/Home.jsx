@@ -9,28 +9,8 @@ import { HomePageContainer, CustomerInfoContainer } from "./Home.styles";
 const userKit = new UserKit();
 const Home = () => {
   const MAX_CUSTOMER_NUM = 10;
-  const { user, setUser, customers, setCustomers } = useContext(UserContext);
+  const { user, customers, customerNr } = useContext(UserContext);
   const history = useHistory();
-  const [customerNr, setCustomerNr] = useState("");
-
-  useEffect(() => {
-    userKit
-      .getLoginUser()
-      .then((res) => res.json())
-      .then(({ email, firstName, lastName }) =>
-        setUser({ email, firstName, lastName })
-      );
-  }, [setUser]);
-
-  useEffect(() => {
-    userKit
-      .getCustomerList()
-      .then((res) => res.json())
-      .then((data) => {
-        setCustomers(data.results);
-        setCustomerNr(data.count);
-      });
-  }, [customers, setCustomers]);
 
   const handleDelete = (id) => {
     userKit.deleteCustomer(id);
