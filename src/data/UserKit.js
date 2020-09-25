@@ -27,11 +27,12 @@ export default class {
     });
   }
 
-  async activateUser(uid, token) {
+  async activateUser(uid, token, signal) {
     const url = `${ROOT_URL}auth/users/activate/`;
     const payload = { uid, token };
     return fetch(url, {
       method: "POST",
+      signal,
       headers: this.getPublicHeaders(),
       body: JSON.stringify(payload),
     });
@@ -55,10 +56,11 @@ export default class {
     });
   }
 
-  async getCustomerList() {
+  async getCustomerList({ signal }) {
     const url = `${ROOT_URL}api/v1/customers`;
     return fetch(url, {
       headers: this.getPrivateHeaders(),
+      signal,
     });
   }
 

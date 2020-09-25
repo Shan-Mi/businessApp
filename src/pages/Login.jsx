@@ -20,8 +20,10 @@ const Login = () => {
   const userKit = new UserKit();
 
   useEffect(() => {
+    const abortController = new AbortController();
+    const { signal } = abortController;
     userKit
-      .activateUser(uid, token)
+      .activateUser(uid, token, signal)
       .then((res) => {
         res.json();
         console.log(res);
@@ -29,24 +31,33 @@ const Login = () => {
           setIsActiveUser(false);
         }
       })
-      .then((data) => console.log(data)); // eslint-disable-next-line react-hooks/exhaustive-deps
+      .then((data) => {
+        //console.log(data);
+      });
+
+    return () => {
+      abortController.abort();
+      console.log("aborting");
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleLogin = (e) => {
     e.preventDefault();
     if (!isActiveUser) {
       history.push("/invalid");
+    } else {
+      userKit
+        .login(loginEmail, loginPassword)
+        .then((res) => res.json())
+        .then(({ token }) => {
+          if (token) {
+            userKit.setToken(token);
+            history.push("/home");
+          }
+          setErrors("Invalid Email Address or Password!");
+        });
     }
-    userKit
-      .login(loginEmail, loginPassword)
-      .then((res) => res.json())
-      .then(({ token }) => {
-        if (token) {
-          userKit.setToken(token);
-          history.push("/home");
-        }
-        setErrors("Invalid Email Address or Password!");
-      });
   };
 
   // console.log(uid, token);

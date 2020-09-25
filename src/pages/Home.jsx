@@ -34,8 +34,10 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
+    const abortController = new AbortController();
+    const { signal } = abortController;
     userKit
-      .getCustomerList()
+      .getCustomerList(signal)
       .then((res) => res.json())
       .then((data) => {
         setCustomers(data.results);
@@ -43,6 +45,7 @@ const Home = () => {
       });
     // console.log('get customer')
     //  multiple rendering...need to solve it
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [customers, customerNr]);
 
