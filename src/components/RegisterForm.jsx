@@ -1,6 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import UserKit from "../data/UserKit";
-import { UserContext } from "../context/GlobalContext";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";
 import * as Yup from "yup";
@@ -11,14 +10,12 @@ import { MyBtn } from "./MyBtn.styles";
 const userKit = new UserKit();
 
 const RegisterForm = () => {
-  const REGEX_PASSWORD = /^(?=.*\d)(?=.*[a-z])(?=.*[!.-])(?=.*[a-zA-Z]).{8,}$/;
-  const { user, setUser } = useContext(UserContext);
-
-  const [firstName, setFirstName] = useState("");
+  const REGEX_PASSWORD = /^(?=.*\d)(?=.*[a-z])(?=.*[!.-])(?=.*[a-zA-Z]).{8,}$/; // eslint-disable-next-line
+  const [firstName, setFirstName] = useState(""); // eslint-disable-next-line
   const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [organisationName, setOrganisationName] = useState("");
+  const [email, setEmail] = useState(""); // eslint-disable-next-line
+  const [password, setPassword] = useState(""); // eslint-disable-next-line
+  const [organisationName, setOrganisationName] = useState(""); // eslint-disable-next-line
   const [organisationKind, setOrganisationKind] = useState("");
   const [isRegisterSucessful, setIsRegisterSucessful] = useState(false);
   const schema = Yup.object().shape({
