@@ -41,7 +41,7 @@ const CustomerPage = () => {
         setIsLoading(false);
         console.log(currentCustomer);
         setOriginalCustomer(currentCustomer);
-      });
+      }); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleDelete = (id) => {
@@ -49,7 +49,7 @@ const CustomerPage = () => {
     history.push("/home");
   };
 
-  const handleUpdate = (id, ...args) => {
+  const handleUpdate = () => {
     setIsUpdating(true);
     drawUpdateCustomerInfoArea();
   };
