@@ -24,11 +24,24 @@ const registerFormStyles = css`
 const newCustomerFormStyles = css`
   padding: 1rem 2rem;
   width: 40vw;
+  position: relative;
   // position: absolute;
   // top: 60px;
   // left: 50%;
   // transform: translateX(-50%);
 
+  svg {
+    position: absolute;
+    right: 17px;
+    font-size: 25px;
+    filter: invert(99%) sepia(1%) saturate(6218%) hue-rotate(189deg)
+      brightness(119%) contrast(100%);
+    &:hover {
+      cursor: pointer;
+      opacity: 0.7;
+      transform: scale(1.2);
+    }
+  }
   button {
     margin-top: 0;
   }

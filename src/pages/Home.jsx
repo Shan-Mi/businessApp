@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CreateNewCustomerForm from "../components/CreateNewCustomer";
 import UserKit from "../data/UserKit";
 import { UserContext } from "../context/GlobalContext";
@@ -17,6 +17,8 @@ const Home = () => {
     setCustomers,
     setCustomerNr,
   } = useContext(UserContext);
+  const [showAddCustomerForm, setShowAddCustomerForm] = useState(false);
+  const [showAddBtn, setShowAddBtn] = useState(true);
   const history = useHistory();
 
   useEffect(() => {
@@ -30,7 +32,8 @@ const Home = () => {
       .then(({ email, firstName, lastName }) =>
         setUser({ email, firstName, lastName })
       );
-    console.log("get user"); // eslint-disable-next-line react-hooks/exhaustive-deps
+    // console.log("get user");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -56,6 +59,12 @@ const Home = () => {
   const handleLogout = () => {
     userKit.deleteToken();
     history.push("/");
+  };
+
+  const handleAddCustomer = () => {
+    console.log("new customer");
+    setShowAddCustomerForm(true);
+    setShowAddBtn(false);
   };
 
   const renderCustomers = (customers) =>
@@ -98,7 +107,14 @@ const Home = () => {
       </div>
 
       {customerNr === 0 ? (
-        <h3>You don't have any customer.</h3>
+        <>
+          <h3>You don't have any customer.</h3>
+          {showAddBtn && (
+            <BtnSmall onClick={handleAddCustomer}>
+              Add a new customer
+            </BtnSmall>
+          )}
+        </>
       ) : (
         <>
           <p className="customer-number-info">
@@ -109,7 +125,17 @@ const Home = () => {
       )}
       <hr />
 
-      {customerNr !== MAX_CUSTOMER_NUM && <CreateNewCustomerForm />}
+      {customerNr !== MAX_CUSTOMER_NUM && showAddBtn && (
+        <BtnSmall onClick={handleAddCustomer}>
+          Add a new customer
+        </BtnSmall>
+      )}
+      {/* customerNr !== MAX_CUSTOMER_NUM && <CreateNewCustomerForm /> */}
+      <CreateNewCustomerForm
+        showAddCustomerForm={showAddCustomerForm}
+        setShowAddCustomerForm={setShowAddCustomerForm}
+        setShowAddBtn={setShowAddBtn}
+      />
       {customerNr === MAX_CUSTOMER_NUM && (
         <p>
           You have reached maxmum customer amount, congrats!

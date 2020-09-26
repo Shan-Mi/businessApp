@@ -43,7 +43,7 @@ const CustomerPage = () => {
         setVatNr(currentCustomer.vatNr);
         setWebsite(currentCustomer.website);
         setIsLoading(false);
-        console.log(currentCustomer);
+        // console.log(currentCustomer);
         setOriginalCustomer(currentCustomer);
       }); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -68,7 +68,7 @@ const CustomerPage = () => {
 
   const saveUpdate = () => {
     setIsUpdating(false);
-    console.log("click");
+    // console.log("click");
     const updatedCustomer = {
       ...originalCustomer,
       email,
@@ -82,8 +82,8 @@ const CustomerPage = () => {
     };
     return userKit
       .editCustomerInfo(id, updatedCustomer)
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((res) => res.json());
+    // .then((data) => console.log(data));
   };
 
   const renderCustomerInfo = () => (

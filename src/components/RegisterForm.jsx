@@ -69,7 +69,7 @@ const RegisterForm = () => {
         setPassword(password);
         setOrganisationName(organisationName);
         setOrganisationKind(organisationKind);
-        console.log(data);
+        // console.log(data);
       });
   };
 

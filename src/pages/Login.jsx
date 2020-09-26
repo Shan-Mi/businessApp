@@ -27,7 +27,7 @@ const Login = () => {
     const { signal } = abortController;
     userKit.activateUser(uid, token, signal).then((res) => {
       // res.json();
-      console.log(res);
+      // console.log(res);
       if (!res.ok) {
         setIsActiveUser(false);
       }
@@ -38,7 +38,7 @@ const Login = () => {
 
     return () => {
       abortController.abort();
-      console.log("aborting");
+      // console.log("aborting");
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

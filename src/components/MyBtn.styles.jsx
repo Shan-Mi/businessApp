@@ -32,14 +32,19 @@ const LoginBtnStyles = css`
   color: white;
 `;
 
-const getBtnSmallStyles = ({ logout }) => {
-  if (logout) {
+const ShowStatusStyle = css`
+  display: inline;
+`;
+
+const HideStatusStyle = css`
+  display: none;
+`;
+
+const getBtnSmallStyles = (props) => {
+  if (props.logout) {
     return LogoutBtnStyles;
   }
-};
-
-const getLoginBtnStyles = ({ login }) => {
-  if (login) {
+  if (props.login) {
     return LoginBtnStyles;
   }
 };
@@ -56,6 +61,4 @@ export const BtnSmall = styled.button`
   }
 
   ${getBtnSmallStyles};
-
-  ${getLoginBtnStyles}
 `;

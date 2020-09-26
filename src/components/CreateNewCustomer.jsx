@@ -1,4 +1,3 @@
-// TODO hook-form seems nice, will try this one out later.
 import React from "react";
 import UserKit from "../data/UserKit";
 import { useForm } from "react-hook-form";
@@ -7,6 +6,7 @@ import * as Yup from "yup";
 import FormInput from "./FormInput";
 import { FormContainer } from "./RegisterForm.styles";
 import { MyBtn } from "./MyBtn.styles";
+import { GrClose } from "react-icons/gr";
 
 const userKit = new UserKit();
 
@@ -42,8 +42,11 @@ export const schema = Yup.object().shape({
     "Minmun 10, Maxmum 20 digital"
   ),
 });
-const CreateNewCustomerForm = () => {
-
+const CreateNewCustomerForm = ({
+  showAddCustomerForm,
+  setShowAddCustomerForm,
+  setShowAddBtn,
+}) => {
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
@@ -69,12 +72,20 @@ const CreateNewCustomerForm = () => {
         email,
         phoneNumber,
       })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((res) => res.json());
+    // .then((data) => console.log(data));
+    setShowAddBtn(true);
+    setShowAddCustomerForm(false);
   };
 
-  return (
+  const closeAddCustomerForm = () => {
+    setShowAddBtn(true);
+    setShowAddCustomerForm(false);
+  };
+
+  return showAddCustomerForm ? (
     <FormContainer customer onSubmit={handleSubmit(onSubmit)}>
+      <GrClose onClick={closeAddCustomerForm} />
       <FormInput
         id="name"
         type="name"
@@ -142,7 +153,7 @@ const CreateNewCustomerForm = () => {
       />
       <MyBtn type="submit">Create a new customer</MyBtn>
     </FormContainer>
-  );
+  ) : null;
 };
 
 export default CreateNewCustomerForm;
