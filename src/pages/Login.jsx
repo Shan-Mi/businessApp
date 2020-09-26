@@ -26,7 +26,7 @@ const Login = () => {
     const abortController = new AbortController();
     const { signal } = abortController;
     userKit.activateUser(uid, token, signal).then((res) => {
-      res.json();
+      // res.json();
       console.log(res);
       if (!res.ok) {
         setIsActiveUser(false);
@@ -93,7 +93,9 @@ const Login = () => {
             setErrors(null);
           }}
         />
-        <BtnSmall login type="submit">Login</BtnSmall>
+        <BtnSmall login type="submit">
+          Login
+        </BtnSmall>
       </InputFlexContainer>
     </LoginFormContainer>
   );
