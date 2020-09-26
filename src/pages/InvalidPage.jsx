@@ -9,7 +9,10 @@ const InvalidPage = () => {
   };
   return (
     <div>
-      <h1>You need to login your account via email verification to get access to previous page.</h1>
+      <h1>
+        You need to login and activate your account with the link sent to your email
+        address to get access to previous page.
+      </h1>
       <MyBtn onClick={handleClick}>Go Home</MyBtn>
     </div>
   );

@@ -27,9 +27,20 @@ const LogoutBtnStyles = css`
   }
 `;
 
+const LoginBtnStyles = css`
+  background-color: #2591ff;
+  color: white;
+`;
+
 const getBtnSmallStyles = ({ logout }) => {
   if (logout) {
     return LogoutBtnStyles;
+  }
+};
+
+const getLoginBtnStyles = ({ login }) => {
+  if (login) {
+    return LoginBtnStyles;
   }
 };
 
@@ -45,4 +56,6 @@ export const BtnSmall = styled.button`
   }
 
   ${getBtnSmallStyles};
+
+  ${getLoginBtnStyles}
 `;
