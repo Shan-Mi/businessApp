@@ -32,6 +32,7 @@ export const LoginFormContainer = styled.form`
         top: 3rem;
       }
     }
+
     button {
       top: 6rem;
     }

@@ -32,7 +32,6 @@ const Home = () => {
       .then(({ email, firstName, lastName }) =>
         setUser({ email, firstName, lastName })
       );
-    // console.log("get user");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -46,7 +45,6 @@ const Home = () => {
         setCustomers(data.results);
         setCustomerNr(data.count);
       });
-    // console.log('get customer')
     //  multiple rendering...need to solve it
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -62,14 +60,16 @@ const Home = () => {
   };
 
   const handleAddCustomer = () => {
-    console.log("new customer");
     setShowAddCustomerForm(true);
     setShowAddBtn(false);
   };
 
+
+
+  
   const renderCustomers = (customers) =>
     customers.map(({ name, organisationNr, reference, id }, index) => (
-      <CustomerInfoContainer key={index}>
+      <CustomerInfoContainer key={`customer-info-${index}`}>
         <Link to={`/home/${id}`}>
           <span>
             <strong>Name:</strong> {name}
@@ -88,7 +88,6 @@ const Home = () => {
           }}>
           Delete
         </BtnSmall>
-        {/* <button>Update</button> */}
       </CustomerInfoContainer>
     ));
 
@@ -110,9 +109,7 @@ const Home = () => {
         <>
           <h3>You don't have any customer.</h3>
           {showAddBtn && (
-            <BtnSmall onClick={handleAddCustomer}>
-              Add a new customer
-            </BtnSmall>
+            <BtnSmall onClick={handleAddCustomer}>Add a new customer</BtnSmall>
           )}
         </>
       ) : (
@@ -123,19 +120,19 @@ const Home = () => {
           {customers && renderCustomers(customers)}
         </>
       )}
+
       <hr />
 
       {customerNr !== MAX_CUSTOMER_NUM && showAddBtn && (
-        <BtnSmall onClick={handleAddCustomer}>
-          Add a new customer
-        </BtnSmall>
+        <BtnSmall onClick={handleAddCustomer}>Add a new customer</BtnSmall>
       )}
-      {/* customerNr !== MAX_CUSTOMER_NUM && <CreateNewCustomerForm /> */}
+
       <CreateNewCustomerForm
         showAddCustomerForm={showAddCustomerForm}
         setShowAddCustomerForm={setShowAddCustomerForm}
         setShowAddBtn={setShowAddBtn}
       />
+
       {customerNr === MAX_CUSTOMER_NUM && (
         <p>
           You have reached maxmum customer amount, congrats!

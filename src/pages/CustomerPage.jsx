@@ -8,6 +8,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";
 import { schema } from "../components/CreateNewCustomer";
 import { FormContainer } from "../components/RegisterForm.styles";
+import { GrClose } from "react-icons/gr";
+
 const userKit = new UserKit();
 
 const CustomerPage = () => {
@@ -26,7 +28,7 @@ const CustomerPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [isUpdating, setIsUpdating] = useState(false);
 
-  useEffect(() => {
+  const setCustomerDetailInfoArea = () => {
     userKit
       .getCustomer(id)
       .then((res) => res.json())
@@ -43,9 +45,12 @@ const CustomerPage = () => {
         setVatNr(currentCustomer.vatNr);
         setWebsite(currentCustomer.website);
         setIsLoading(false);
-        // console.log(currentCustomer);
         setOriginalCustomer(currentCustomer);
-      }); // eslint-disable-next-line react-hooks/exhaustive-deps
+      });
+  };
+
+  useEffect(() => {
+    setCustomerDetailInfoArea(); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleDelete = (id) => {
@@ -62,13 +67,18 @@ const CustomerPage = () => {
     history.push("/home");
   };
 
+  const closeEditing = () => {
+    setIsLoading(false);
+    setIsUpdating(false);
+    setCustomerDetailInfoArea();
+  };
+
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schema),
   });
 
   const saveUpdate = () => {
     setIsUpdating(false);
-    // console.log("click");
     const updatedCustomer = {
       ...originalCustomer,
       email,
@@ -83,7 +93,6 @@ const CustomerPage = () => {
     return userKit
       .editCustomerInfo(id, updatedCustomer)
       .then((res) => res.json());
-    // .then((data) => console.log(data));
   };
 
   const renderCustomerInfo = () => (
@@ -131,6 +140,7 @@ const CustomerPage = () => {
 
   const drawUpdateCustomerInfoArea = () => (
     <FormContainer update onSubmit={handleSubmit(saveUpdate)}>
+      <GrClose onClick={closeEditing} />
       <FormInput
         id="name"
         type="name"

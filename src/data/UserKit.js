@@ -70,7 +70,6 @@ export default class {
       headers: this.getPrivateHeaders(),
     });
   }
-  //    getCustomerList & getCustomer(id) -> they got the same results back...or maybe I am foolish
 
   async createCustomer(payload) {
     const url = `${ROOT_URL}api/v1/customers`;
@@ -99,11 +98,6 @@ export default class {
     });
   }
 
-  /* 
-  PUT: update;
-  PATCH: partial update
-  */
-
   setToken(token) {
     localStorage.setItem("BUSINESS_TOKEN", token);
   }
@@ -129,15 +123,3 @@ export default class {
     };
   }
 }
-/* 
-createCustomerList(
-    name,
-    organisationNr,
-    vatNr,
-    reference,
-    paymentTerm,
-    website,
-    email,
-    phoneNumber
-  ) 
-   */

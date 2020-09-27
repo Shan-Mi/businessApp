@@ -69,7 +69,6 @@ const RegisterForm = () => {
         setPassword(password);
         setOrganisationName(organisationName);
         setOrganisationKind(organisationKind);
-        // console.log(data);
       });
   };
 
@@ -137,9 +136,11 @@ const RegisterForm = () => {
           <MyBtn type="submit">Register a new user</MyBtn>
         </FormContainer>
       )}
+
       {isRegisterSucessful && (
         <p>
-          Please check your <strong>{email}</strong> E-mail address for login
+          Please check your <strong>{email}</strong> email for activate link to
+          continue login
         </p>
       )}
     </FlexContainer>

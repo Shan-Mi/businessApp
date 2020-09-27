@@ -17,7 +17,7 @@ class NotFoundPage extends React.Component {
           </strong>
         </p>
         <p className="text-center">
-          <Link to="/">Go back to HomePage </Link>
+          <Link to="/">Go back to HomePage</Link>
         </p>
       </div>
     );

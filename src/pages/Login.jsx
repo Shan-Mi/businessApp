@@ -26,19 +26,13 @@ const Login = () => {
     const abortController = new AbortController();
     const { signal } = abortController;
     userKit.activateUser(uid, token, signal).then((res) => {
-      // res.json();
-      // console.log(res);
       if (!res.ok) {
         setIsActiveUser(false);
       }
     });
-    // .then((data) => {
-    //   console.log(data);
-    // });
 
     return () => {
       abortController.abort();
-      // console.log("aborting");
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -70,13 +64,16 @@ const Login = () => {
           information.
         </h1>
       )}
+
       {!isActiveUser && (
         <h1>
           Before you can login, you must activate your account with the link
           sent to your email address.
         </h1>
       )}
+
       {errors && <WarningContainer>{errors}</WarningContainer>}
+
       <InputFlexContainer>
         <input
           placeholder="Email Address"

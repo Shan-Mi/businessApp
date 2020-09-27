@@ -23,9 +23,8 @@ function App() {
         <Route path="/login" exact component={Login} />
         <Route path="/home" exact component={Home} />
         <Route path="/home/:id" exact component={CustomerPage} />
-        <Route path='/invalid' exact component={InvalidPage} />
+        <Route path="/invalid" exact component={InvalidPage} />
         <Route path="*" component={NotFoundPage} />
-        
       </Switch>
     </RootContainer>
   );

@@ -7,6 +7,7 @@ import FormInput from "./FormInput";
 import { FormContainer } from "./RegisterForm.styles";
 import { MyBtn } from "./MyBtn.styles";
 import { GrClose } from "react-icons/gr";
+import styled from "styled-components";
 
 const userKit = new UserKit();
 
@@ -73,7 +74,6 @@ const CreateNewCustomerForm = ({
         phoneNumber,
       })
       .then((res) => res.json());
-    // .then((data) => console.log(data));
     setShowAddBtn(true);
     setShowAddCustomerForm(false);
   };
@@ -84,76 +84,88 @@ const CreateNewCustomerForm = ({
   };
 
   return showAddCustomerForm ? (
-    <FormContainer customer onSubmit={handleSubmit(onSubmit)}>
-      <GrClose onClick={closeAddCustomerForm} />
-      <FormInput
-        id="name"
-        type="name"
-        name="name"
-        label="Name *"
-        register={register}
-        error={errors.name}
-      />
-      <FormInput
-        id="organisationNr"
-        type="organisationNr"
-        name="organisationNr"
-        label="organisationNr"
-        register={register}
-        error={errors.organisationNr}
-      />
-      <FormInput
-        id="vatNr"
-        type="vatNr"
-        name="vatNr"
-        label="vatNr *"
-        register={register}
-        error={errors.vatNr}
-      />
+    <>
+      <BlurLayerContainer />
+      <FormContainer customer onSubmit={handleSubmit(onSubmit)}>
+        <GrClose onClick={closeAddCustomerForm} />
+        <FormInput
+          id="name"
+          type="name"
+          name="name"
+          label="Name *"
+          register={register}
+          error={errors.name}
+        />
+        <FormInput
+          id="organisationNr"
+          type="organisationNr"
+          name="organisationNr"
+          label="organisationNr"
+          register={register}
+          error={errors.organisationNr}
+        />
+        <FormInput
+          id="vatNr"
+          type="vatNr"
+          name="vatNr"
+          label="vatNr *"
+          register={register}
+          error={errors.vatNr}
+        />
 
-      <FormInput
-        id="reference"
-        type="reference"
-        name="reference"
-        label="reference"
-        register={register}
-        error={errors.reference}
-      />
-      <FormInput
-        id="paymentTerm"
-        type="paymentTerm"
-        name="paymentTerm"
-        label="PaymentTerm *"
-        register={register}
-        error={errors.paymentTerm}
-      />
-      <FormInput
-        id="website"
-        type="website"
-        name="website"
-        label="Website"
-        register={register}
-        error={errors.website}
-      />
-      <FormInput
-        id="email"
-        type="email"
-        name="email"
-        label="Email:"
-        register={register}
-        error={errors.email}
-      />
-      <FormInput
-        id="phoneNumber"
-        type="phoneNumber"
-        name="phoneNumber"
-        label="Phone Number:"
-        register={register}
-        error={errors.phoneNumber}
-      />
-      <MyBtn type="submit">Create a new customer</MyBtn>
-    </FormContainer>
+        <FormInput
+          id="reference"
+          type="reference"
+          name="reference"
+          label="reference"
+          register={register}
+          error={errors.reference}
+        />
+        <FormInput
+          id="paymentTerm"
+          type="paymentTerm"
+          name="paymentTerm"
+          label="PaymentTerm *"
+          register={register}
+          error={errors.paymentTerm}
+        />
+        <FormInput
+          id="website"
+          type="website"
+          name="website"
+          label="Website"
+          register={register}
+          error={errors.website}
+        />
+        <FormInput
+          id="email"
+          type="email"
+          name="email"
+          label="Email:"
+          register={register}
+          error={errors.email}
+        />
+        <FormInput
+          id="phoneNumber"
+          type="phoneNumber"
+          name="phoneNumber"
+          label="Phone Number:"
+          register={register}
+          error={errors.phoneNumber}
+        />
+        <MyBtn type="submit">Create a new customer</MyBtn>
+      </FormContainer>
+    </>
   ) : null;
 };
 
 export default CreateNewCustomerForm;
+
+const BlurLayerContainer = styled.div`
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.7;
+`;

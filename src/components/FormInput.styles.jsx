@@ -11,7 +11,6 @@ export const InputFlexContainer = styled.div`
     padding-bottom: 10px;
   }
   input {
-    /* flex-basis: 250px; */
     height: 25px;
   }
 `;

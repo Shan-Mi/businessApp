@@ -32,14 +32,6 @@ const LoginBtnStyles = css`
   color: white;
 `;
 
-const ShowStatusStyle = css`
-  display: inline;
-`;
-
-const HideStatusStyle = css`
-  display: none;
-`;
-
 const getBtnSmallStyles = (props) => {
   if (props.logout) {
     return LogoutBtnStyles;
@@ -53,7 +45,6 @@ export const BtnSmall = styled.button`
   padding: 3px 10px;
   border-radius: 2px;
   border: none;
-  /* margin-left: 5px; */
   font-family: "PT Sans Narrow", sans-serif;
 
   &:hover {

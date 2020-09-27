@@ -5,7 +5,6 @@ export const HomePageContainer = styled.div`
     font-family: "Pacifico", cursive;
     font-size: 3rem;
     color: crimson;
-    margin-bottom: 1rem;
   }
 
   .user-info {
@@ -32,8 +31,9 @@ export const CustomerInfoContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 50vw;
-  min-width: 400px;
+  min-width: 700px;
   margin: 5px auto;
+
   span {
     padding-right: 15px;
   }
