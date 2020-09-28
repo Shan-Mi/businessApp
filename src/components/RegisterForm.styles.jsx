@@ -26,7 +26,6 @@ const newCustomerFormStyles = css`
   width: 40vw;
   position: relative;
   position: absolute;
-  // top: 15vh;
   top: 6vh;
   left: 50%;
   transform: translateX(-50%);

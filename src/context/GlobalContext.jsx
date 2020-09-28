@@ -23,5 +23,3 @@ const GlobalContext = ({ children }) => {
 };
 
 export default GlobalContext;
-
-// customers should have an 'id' property

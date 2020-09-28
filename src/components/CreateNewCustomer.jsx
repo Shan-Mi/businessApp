@@ -8,6 +8,7 @@ import { MyBtn } from "./MyBtn.styles";
 import { GrClose } from "react-icons/gr";
 import styled from "styled-components";
 import { schema } from "../data/Schema";
+
 const userKit = new UserKit();
 
 const CreateNewCustomerForm = ({

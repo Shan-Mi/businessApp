@@ -2,7 +2,7 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import UserKit from "../data/UserKit";
 import { BtnSmall } from "./MyBtn.styles";
-import {LoggedinHeaderContainer} from './LoggedinHeader.styles'
+import { LoggedinHeaderContainer } from "./LoggedinHeader.styles";
 const userKit = new UserKit();
 
 const LoggedinHeader = ({ user }) => {

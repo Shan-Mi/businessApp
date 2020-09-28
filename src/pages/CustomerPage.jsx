@@ -16,7 +16,7 @@ const userKit = new UserKit();
 
 const CustomerPage = () => {
   const { id } = useParams();
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
   const [originalCustomer, setOriginalCustomer] = useState("");
 
   const [email, setEmail] = useState("");
@@ -53,6 +53,12 @@ const CustomerPage = () => {
   };
 
   useEffect(() => {
+    userKit
+      .getLoginUser()
+      .then((res) => res.json())
+      .then(({ email, firstName, lastName }) =>
+        setUser({ email, firstName, lastName })
+      );
     setCustomerDetailInfoArea(); // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -176,8 +182,8 @@ const CustomerPage = () => {
   return (
     <div>
       <LoggedinHeader user={user} />
-      {!isLoading && !isUpdating && <h1>Customer Information Details:</h1>}
-      {isUpdating && <h1>Editing Customer Information:</h1>}
+      {!isLoading && !isUpdating && <h3 className="detail-page-h3-title">Customer Information Details:</h3>}
+      {isUpdating && <h3 className="detail-page-h3-title">Editing Customer Information:</h3>}
       {!isLoading && (
         <BtnSmall onClick={handleClick}>Go back to HomePage</BtnSmall>
       )}

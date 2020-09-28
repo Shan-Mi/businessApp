@@ -59,7 +59,6 @@ const Home = () => {
         setCustomers(data.results);
         setCustomerNr(data.count);
       });
-    //  multiple rendering...need to solve it
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [customers, customerNr]);
