@@ -85,30 +85,32 @@ const Home = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {customers.map(({ name, organisationNr, reference, id }, index) => (
-            <Tr key={`customer-review-${index}`}>
-              <Td>
-                <Link to={`/home/${id}`}>{name}</Link>
-              </Td>
+          {customers
+            .sort((a, b) => a.id - b.id)
+            .map(({ name, organisationNr, reference, id }, index) => (
+              <Tr key={`customer-review-${index}`}>
+                <Td>
+                  <Link to={`/home/${id}`}>{name}</Link>
+                </Td>
 
-              <Td>
-                <Link to={`/home/${id}`}>{organisationNr}</Link>
-              </Td>
+                <Td>
+                  <Link to={`/home/${id}`}>{organisationNr}</Link>
+                </Td>
 
-              <Td>
-                <Link to={`/home/${id}`}>{reference}</Link>
-              </Td>
+                <Td>
+                  <Link to={`/home/${id}`}>{reference}</Link>
+                </Td>
 
-              <Td>
-                <BtnSmall
-                  onClick={() => {
-                    handleDelete(id);
-                  }}>
-                  Delete
-                </BtnSmall>
-              </Td>
-            </Tr>
-          ))}
+                <Td>
+                  <BtnSmall
+                    onClick={() => {
+                      handleDelete(id);
+                    }}>
+                    Delete
+                  </BtnSmall>
+                </Td>
+              </Tr>
+            ))}
         </Tbody>
       </Table>
     );
