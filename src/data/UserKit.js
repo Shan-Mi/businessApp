@@ -56,11 +56,10 @@ export default class {
     });
   }
 
-  async getCustomerList({ signal }) {
+  async getCustomerList() {
     const url = `${ROOT_URL}api/v1/customers`;
     return fetch(url, {
       headers: this.getPrivateHeaders(),
-      signal,
     });
   }
 

@@ -4,7 +4,9 @@ import UserKit from "../data/UserKit";
 import { UserContext } from "../context/GlobalContext";
 import { Link, useHistory } from "react-router-dom";
 import { BtnSmall } from "../components/MyBtn.styles";
-import { HomePageContainer, CustomerInfoContainer } from "./Home.styles";
+import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
+import LoggedinHeader from "../components/LoggedinHeader";
 
 const userKit = new UserKit();
 const Home = () => {
@@ -32,8 +34,20 @@ const Home = () => {
       .then(({ email, firstName, lastName }) =>
         setUser({ email, firstName, lastName })
       );
+
+    getCustomerList();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const getCustomerList = () => {
+    userKit
+      .getCustomerList()
+      .then((res) => res.json())
+      .then((data) => {
+        setCustomers(data.results);
+        setCustomerNr(data.count);
+      });
+  };
 
   useEffect(() => {
     const abortController = new AbortController();
@@ -54,56 +68,55 @@ const Home = () => {
     userKit.deleteCustomer(id);
   };
 
-  const handleLogout = () => {
-    userKit.deleteToken();
-    history.push("/");
-  };
-
   const handleAddCustomer = () => {
     setShowAddCustomerForm(true);
     setShowAddBtn(false);
   };
 
+  const renderCustomers = (customers) => {
+    return (
+      <Table>
+        <Thead>
+          <Tr>
+            <Th>Name</Th>
+            <Th>Organisation Nr</Th>
+            <Th>Reference</Th>
+            <Th>Delete</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {customers.map(({ name, organisationNr, reference, id }, index) => (
+            <Tr key={`customer-review-${index}`}>
+              <Td>
+                <Link to={`/home/${id}`}>{name}</Link>
+              </Td>
 
+              <Td>
+                <Link to={`/home/${id}`}>{organisationNr}</Link>
+              </Td>
 
-  
-  const renderCustomers = (customers) =>
-    customers.map(({ name, organisationNr, reference, id }, index) => (
-      <CustomerInfoContainer key={`customer-info-${index}`}>
-        <Link to={`/home/${id}`}>
-          <span>
-            <strong>Name:</strong> {name}
-          </span>
-          <span>
-            <strong>Organisation Nr:</strong> {organisationNr}
-          </span>
-          <span>
-            <strong>Reference:</strong> {reference}
-          </span>
-        </Link>
+              <Td>
+                <Link to={`/home/${id}`}>{reference}</Link>
+              </Td>
 
-        <BtnSmall
-          onClick={() => {
-            handleDelete(id);
-          }}>
-          Delete
-        </BtnSmall>
-      </CustomerInfoContainer>
-    ));
+              <Td>
+                <BtnSmall
+                  onClick={() => {
+                    handleDelete(id);
+                  }}>
+                  Delete
+                </BtnSmall>
+              </Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+    );
+  };
 
   return (
-    <HomePageContainer>
-      <h1>Welcome to Your Awesome Business App!</h1>
-      <div className="user-info">
-        <strong>Name: </strong>
-        <span>
-          {user.firstName} {user.lastName}
-        </span>
-        <strong>E-mail: </strong> <span>{user.email}</span>
-        <BtnSmall logout onClick={handleLogout}>
-          Logout
-        </BtnSmall>
-      </div>
+    <div>
+      <LoggedinHeader user={user} />
 
       {customerNr === 0 ? (
         <>
@@ -141,7 +154,7 @@ const Home = () => {
           </span>
         </p>
       )}
-    </HomePageContainer>
+    </div>
   );
 };
 

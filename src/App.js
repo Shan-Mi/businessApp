@@ -12,6 +12,10 @@ import styled from "styled-components";
 import InvalidPage from "./pages/InvalidPage";
 const RootContainer = styled.div`
   min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2rem;
 `;
 
 function App() {

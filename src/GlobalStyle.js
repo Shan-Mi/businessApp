@@ -15,6 +15,10 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 3rem 0 1rem;
   }
+
+  h2 {
+    margin: 0;
+  }
   
   a {
     text-decoration: none;
