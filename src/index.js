@@ -9,7 +9,7 @@ import GlobalContext from "./context/GlobalContext";
 ReactDOM.render(
   <React.StrictMode>
     <GlobalContext>
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <App />
       </BrowserRouter>
     </GlobalContext>

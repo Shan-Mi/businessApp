@@ -37,6 +37,7 @@ const RegisterForm = () => {
       .then((data) => {
         setIsRegisterSucessful(true);
         setEmail(email);
+        console.log(data)
       });
   };
 
