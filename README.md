@@ -31,7 +31,7 @@
 5. For each individuel customer's page, all these fields should be listed: **name**, **organisationNr**, **vatNr**, **reference**, **paymentTerm**, **website**, **email**, **phoneNumber**.
    
    - 📌 Add a button to delete a customer. Once delete a customer, the user will navigate to `/home` page.
-   - 📌 The user should be able to update/edit customers' information. (*Did it! Yeah! *😃)
+   - 📌 The user should be able to update/edit customers' information. 
 
 
 ## Dependencies
@@ -39,6 +39,7 @@
 2. styled-component
 3. react-hook-form
 4. yup
+5. react-super-responsive-table
 
 ## URL
 ROOT_URL: "https://frebi.willandskill.eu/"
