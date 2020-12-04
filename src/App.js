@@ -7,9 +7,9 @@ import CustomerPage from "./pages/CustomerPage";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NotFoundPage from "./pages/NotFoundPage";
-
 import styled from "styled-components";
 import InvalidPage from "./pages/InvalidPage";
+
 const RootContainer = styled.div`
   min-height: 100vh;
   display: flex;
@@ -17,6 +17,7 @@ const RootContainer = styled.div`
   align-items: center;
   padding-bottom: 2rem;
 `;
+// <Route path="/" exact component={logInPage} />}
 
 function App() {
   return (

@@ -3,7 +3,11 @@ import UserKit from "../data/UserKit";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers";
 import FormInput from "./FormInput";
-import { FlexContainer, FormContainer } from "./RegisterForm.styles";
+import {
+  FlexContainer,
+  FormContainer,
+  RegisterBtnWrapper,
+} from "./RegisterForm.styles";
 import { MyBtn } from "./MyBtn.styles";
 import { schemaRegister } from "../data/Schema";
 
@@ -12,10 +16,11 @@ const userKit = new UserKit();
 const RegisterForm = () => {
   const [email, setEmail] = useState("");
   const [isRegisterSucessful, setIsRegisterSucessful] = useState(false);
-
+  const [showRegister, setShowRegister] = useState(false);
   const { register, handleSubmit, errors } = useForm({
     resolver: yupResolver(schemaRegister),
   });
+
   const onSubmit = ({
     firstName,
     lastName,
@@ -40,6 +45,13 @@ const RegisterForm = () => {
       });
   };
 
+  // const onLoginSubmit = ({ username, password }) => {
+  //   userKit
+  //     .login(username, password)
+  //     .then((res) => console.log(res))
+  //     .then((data) => console.log(data));
+  // };
+
   const registerDetail = [
     ["firstName", "First Name:"],
     ["lastName", "Last Name:"],
@@ -49,13 +61,49 @@ const RegisterForm = () => {
     ["organisationKind", "Organisation Kind:"],
   ];
 
-  return (
+  // const loginDetail = [
+  //   ["username", "Username"],
+  //   ["password", "Password"],
+  // ];
+
+  // const LoginFormArea = () => (
+  //   <>
+  //     <FormContainer onSubmit={handleSubmit(onLoginSubmit)}>
+  //       <RegisterBtnWrapper
+  //         onClick={() => {
+  //           setShowRegister(true);
+  //         }}>
+  //         Register
+  //       </RegisterBtnWrapper>
+  //       {loginDetail.map(([value, placeholder], index) => (
+  //         <FormInput
+  //           key={`login-as-${index}`}
+  //           value={value}
+  //           placeholder={placeholder}
+  //           register={register}
+  //           errors={errors}
+  //         />
+  //       ))}
+  //       <MyBtn login type="submit">
+  //         Login
+  //       </MyBtn>
+  //     </FormContainer>
+  //   </>
+  // );
+
+  const RegersterFormArea = () => (
     <FlexContainer>
       <h2>Register</h2>
       <p className="form-title">Enter Details to register:</p>
 
       {!isRegisterSucessful && (
         <FormContainer onSubmit={handleSubmit(onSubmit)}>
+          <RegisterBtnWrapper
+            onClick={() => {
+              setShowRegister(false);
+            }}>
+            Login
+          </RegisterBtnWrapper>
           {registerDetail.map(([value, placeholder], index) => (
             <FormInput
               key={`new-customer-${index}`}
@@ -77,6 +125,13 @@ const RegisterForm = () => {
         </p>
       )}
     </FlexContainer>
+  );
+
+  return (
+    <>
+      {/* !showRegister && <LoginFormArea /> */}
+      {!showRegister && <RegersterFormArea />}
+    </>
   );
 };
 

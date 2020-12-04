@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { BtnSmall } from "./MyBtn.styles";
 
 export const FlexContainer = styled.div`
   display: flex;
@@ -68,6 +69,7 @@ export const FormContainer = styled.form`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 
   label {
     color: #e1e5e8;
@@ -95,4 +97,18 @@ export const FormContainer = styled.form`
     margin-top: 1rem;
   }
   ${getFormStyles}
+`;
+
+export const RegisterBtnWrapper = styled(BtnSmall)`
+  width: 60px !important;
+  position: absolute;
+  top: 0px;
+  right: 3rem;
+  background: none !important;
+  transition: transform 0.2s ease-in-out;
+
+  &:hover {
+    color: #eaa1a1;
+    transform: scale(1.05);
+  }
 `;
