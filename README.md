@@ -1,5 +1,5 @@
 # JavaScript 3 | 2<sup>nd</sup> assignment 
-[live-demo-1](https://business-app-eight.vercel.app/)  |  [live-demo-2](https://business-app-live.herokuapp.com)
+[live-demo](https://business-app-eight.vercel.app/)  
 
 ## Demand
 - React
